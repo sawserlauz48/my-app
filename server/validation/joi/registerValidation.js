@@ -3,7 +3,6 @@ const Joi = require("joi");
 const registerSchema = Joi.object({
     name: Joi.object().keys({
         firstName: Joi.string().min(2).max(256).required(),
-        middleName: Joi.string().min(2).max(256).allow(""),
         lastName: Joi.string().min(2).max(256).required(),
     }).required(),
     phone: Joi.string()
@@ -18,13 +17,12 @@ const registerSchema = Joi.object({
         alt: Joi.string().min(2).max(256).required(),
     }),
     address: Joi.object().keys({
-        state: Joi.string().min(2).max(256).allow(""),
         country: Joi.string().min(2).max(256).required(),
         city: Joi.string().min(2).max(256).required(),
-        street: Joi.string().min(2).max(256).required(),
-        houseNumber: Joi.number().min(1).required(),
+        street: Joi.string().min(2).max(256).allow(""),
+        houseNumber: Joi.number().min(1).allow(""),
     }).required(),
-    isBusiness: Joi.bool().required(),
+    isEmployed: Joi.bool().required(),
     isAdmin: Joi.bool().allow(""),
 });
 
