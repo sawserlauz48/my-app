@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Image = require("../items/image");
-const Address = require("../items/Address");
+const Address = require("../users/Address");
 const Name = require("./name");
 const { URL } = require("../items/helpers/mongooseValidation");
 
@@ -28,11 +28,10 @@ const userSchema = new mongoose.Schema({
         required: true,
 
     },
-    web: URL,
     image: Image,
     address: Address,
     isAdmin: { type: Boolean, default: false },
-    isBusiness: { type: Boolean, default: false },
+    isEmployed: { type: Boolean, default: false },
     createdAt: {
         type: Date,
         default: Date.now
