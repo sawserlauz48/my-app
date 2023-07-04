@@ -1,6 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import Navbar from "./components/Navbar";
+import CardComponent from "./components/CardComponent";
+import InputComponent from "./components/InputComponent";
 
 function App() {
   const [darkTheme, setDarkTheme] = useState("light");
@@ -17,9 +20,13 @@ function App() {
   return (
     <div className={darkTheme}>
       <header>
-        <p>asdasdasd</p>
-        <button onClick={handleBtnClick}>click</button>
+        <Navbar onClick={handleBtnClick} />
+        <button onClick={handleBtnClick}></button>
       </header>
+      <body>
+        <CardComponent></CardComponent>
+        <InputComponent></InputComponent>
+      </body>
     </div>
   );
 }

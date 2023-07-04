@@ -3,7 +3,91 @@
 @tailwind utilities;
 
 @layer base {
-  p {
+  /* p {
     @apply dark:bg-blue-950 dark:text-white bg-green-500 text-black;
+  } */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+button {
+  @apply hover:dark:bg-darkmode-pBtn-h dark:bg-darkmode-pBtn dark:text-white hover:bg-lightmode-pBtn-h bg-lightmode-pBtn text-black rounded-md w-1/2 drop-shadow-xl;
+}
+hedder {
+  @apply dark:text-darkmode-text dark:bg-darkmode-bg;
+  background-color: #f6eedf;
+}
+body {
+  @apply dark:text-darkmode-text dark:bg-darkmode-bg;
+  background-color: #f6eedf;
+}
+.navbar {
+  @apply dark:bg-darkmode-accent;
+
+  position: absolute;
+  width: 80px;
+  height: 100vh;
+  background-color: #e3e3e3;
+  transition: 0.5s;
+  padding-left: 10px;
+  overflow: hidden;
+  z-index: 1001;
+}
+.navbar:hover {
+  width: 220px;
+}
+.navbar ul {
+  position: relative;
+  height: 100vh;
+}
+.navbar ul li {
+  position: relative;
+}
+.navbar ul li a {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.navbar ul li a .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  height: 70px;
+  font-size: 1.5em;
+  transform: 0.5s;
+}
+.navbar ul li a .text {
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  padding-left: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+}
+
+.navbar ul li:hover a .icon,
+.navbar ul li:hover a .text {
+  @apply dark:text-darkmode-text;
+  color: #c79338;
+}
+.menuListBottom {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-height: 534px) {
+  .menuListBottom {
+    position: relative;
+    bottom: 0;
+    width: 100%;
   }
 }
