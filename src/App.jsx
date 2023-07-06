@@ -4,29 +4,21 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import CardComponent from "./components/CardComponent";
 import InputComponent from "./components/InputComponent";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState("light");
-
-  const handleBtnClick = () => {
-    if (darkTheme === "light") {
-      setDarkTheme("dark");
-    }
-    if (darkTheme === "dark") {
-      setDarkTheme("light");
-    }
-  };
-  console.log(darkTheme);
+  const isDarkTheme = useSelector(
+    (bigpie) => bigpie.darkThemeSlice.isDarkTheme
+  );
   return (
-    <div className={darkTheme}>
+    <div className={isDarkTheme}>
       <header>
-        <Navbar onClick={handleBtnClick} />
-        <button onClick={handleBtnClick}></button>
+        <Navbar />
       </header>
-      <body>
+      <main>
         <CardComponent></CardComponent>
         <InputComponent></InputComponent>
-      </body>
+      </main>
     </div>
   );
 }

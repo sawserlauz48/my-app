@@ -14,9 +14,26 @@ import {
   orderTableIcon,
   homeIcon,
 } from "../images/svgs";
+import { useDispatch, useSelector } from "react-redux";
+import { darkThemeActions } from "../store/darkTheme";
+
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const isDarkTheme = useSelector(
+    (bigPie) => bigPie.darkThemeSlice.isDarkTheme
+  );
+
+  const changeTheme = () => {
+    if (isDarkTheme === "light") {
+      dispatch(darkThemeActions.setToDarkTheme());
+    }
+    if (isDarkTheme === "dark") {
+      dispatch(darkThemeActions.setToLightTheme());
+    }
+  };
+
+  console.log(isDarkTheme, "isDarkTheme");
   return (
-    // <div className="menuToggle"></div>
     <div className="navbar">
       <ul>
         <li className="logo">
@@ -58,9 +75,11 @@ const Navbar = () => {
               <div className="text">PROFILE PAGE</div>
             </a>
           </li>
-          <li>
+          <li onClick={changeTheme}>
             <a href="#">
-              <div className="icon">{sunIcon}</div>
+              <div className="icon">
+                {isDarkTheme === "dark" ? sunIcon : moonIcon}
+              </div>
               <div className="text">DARKMODE</div>
             </a>
           </li>

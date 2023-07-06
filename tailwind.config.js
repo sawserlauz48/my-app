@@ -5,13 +5,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "darkmode-bg": "#191023",
-        "darkmode-pBtn": "#4c3168",
-        "darkmode-pBtn-h": "#795E96",
+        "darkmode-bg": "#02031D",
+        "darkmode-pBtn": "#C79338",
+        "darkmode-pBtn-h": "#E19F61",
         "darkmode-Sntn": "#ffffff",
         "darkmode-Sntn-h": "#ffffff",
-        "darkmode-accent": "#79397f",
-        "darkmode-text": "#e8e0f0",
+        "darkmode-accent": "#001E3C",
+        "darkmode-text": "#ECEDFE",
         "lightmode-bg": "#f6eedf",
         "lightmode-pBtn": "#C79338",
         "lightmode-pBtn-h": "#E19F61",
