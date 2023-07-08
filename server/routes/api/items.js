@@ -6,7 +6,6 @@ const normalizeItem = require("../../model/itemsService/helpers/normalizationIte
 const authMw = require("../../middleware/authMiddleware");
 const permissionsMiddleware = require("../../middleware/permissionsMiddleware");
 const chalk = require("chalk");
-const { stubFalse } = require("lodash");
 
 router.get("/", async (req, res) => {
     try {

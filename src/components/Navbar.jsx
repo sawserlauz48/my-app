@@ -44,7 +44,7 @@ const Navbar = () => {
         </li>
         <div className="menuList">
           <li>
-            <div className="text">MENU</div>
+            <div className="textDivider">MENU</div>
           </li>
           <li>
             <a href="#">
@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
         <div className="menuListBottom">
           <li>
-            <div className="text">PROFILE</div>
+            <div className="textDivider">PROFILE</div>
           </li>
           <li>
             <a href="#">

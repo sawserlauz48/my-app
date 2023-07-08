@@ -16,6 +16,7 @@ const itemSchema = new mongoose.Schema({
         minLength: 1,
     },
     dietary: DEFAULT_STRING_SCHEMA,
+    ingredients: [String],
     likes: [String],
     createdAt: {
         type: Date,

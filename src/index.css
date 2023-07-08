@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* p {
-    @apply dark:bg-blue-950 dark:text-white bg-green-500 text-black;
-  } */
-}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 button {
   @apply hover:dark:bg-darkmode-pBtn-h dark:bg-darkmode-pBtn dark:text-white hover:bg-lightmode-pBtn-h bg-lightmode-pBtn text-black rounded-md w-1/2 drop-shadow-xl;
   transition: 0.5s;
@@ -27,10 +23,15 @@ body {
 main {
   @apply dark:text-darkmode-text dark:bg-darkmode-bg;
   background-color: #f6eedf;
+  transition: 0.5s;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  width: 100vw;
 }
 .navbar {
   @apply dark:bg-darkmode-accent dark:text-darkmode-text;
-  position: absolute;
+  position: fixed;
   width: 80px;
   height: 100vh;
   background-color: #e3e3e3;
@@ -38,6 +39,7 @@ main {
   padding-left: 10px;
   overflow: hidden;
   z-index: 1001;
+  top: 0;
 }
 .navbar:hover {
   width: 220px;
@@ -82,6 +84,24 @@ main {
   @apply dark:text-lightmode-pBtn;
   color: #c79338;
 }
+.textDivider {
+  display: flex;
+  flex-direction: column;
+  opacity: 60%;
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
+  align-items: center;
+  width: 60px;
+}
+.textDivider::after {
+  background: white;
+  opacity: 60%;
+  content: "";
+  margin-top: 2px;
+  height: 1px;
+  width: 36px;
+  display: block;
+}
 .menuListBottom {
   display: block;
   position: absolute;
@@ -93,5 +113,44 @@ main {
     position: relative;
     bottom: 0;
     width: 100%;
+  }
+}
+.cardImage {
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.listImage img {
+  height: 72px;
+  width: 107px;
+}
+@media (max-width: 640px) {
+  .listDis {
+    display: none;
+  }
+  .listTitle {
+    @apply col-start-1 col-span-6;
+  }
+  .listPrice {
+    @apply col-start-7 col-span-2;
+  }
+  .listImage {
+    @apply col-start-9 col-span-4 justify-self-end;
+  }
+}
+@media (min-width: 1024px) {
+  .listTitle {
+    @apply col-start-1 col-span-2;
+  }
+  .listDis {
+    @apply col-start-3 col-span-7;
+  }
+  .listPrice {
+    @apply col-start-10 col-span-1 justify-self-center;
+  }
+  .listImage {
+    @apply col-start-11 col-span-2 justify-self-end;
   }
 }
