@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-const ButtonComponent = () => {
+const ButtonComponent = ({ label }) => {
   return (
     <Fragment>
-      <buttoan>click here</buttoan>
+      <button className="mt-2 w-full ">{label}</button>
     </Fragment>
   );
 };

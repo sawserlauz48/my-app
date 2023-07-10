@@ -6,6 +6,7 @@ import CardComponent from "./components/CardComponent";
 import InputComponent from "./components/InputComponent";
 import { useSelector } from "react-redux";
 import Listcomponent from "./components/ListComponent";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const isDarkTheme = useSelector(
@@ -13,13 +14,11 @@ function App() {
   );
   return (
     <div className={isDarkTheme}>
-      <header>
+      {/* <header>
         <Navbar />
-      </header>
-      <main className=" pl-[90px] pr-2">
-        <Listcomponent></Listcomponent>
-        {/* <CardComponent></CardComponent> */}
-        <InputComponent></InputComponent>
+      </header> */}
+      <main className="main">
+        <LoginPage></LoginPage>
       </main>
     </div>
   );

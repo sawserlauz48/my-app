@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* *,
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 button {
   @apply hover:dark:bg-darkmode-pBtn-h dark:bg-darkmode-pBtn dark:text-white hover:bg-lightmode-pBtn-h bg-lightmode-pBtn text-black rounded-md w-1/2 drop-shadow-xl;
@@ -16,20 +17,28 @@ hedder {
   @apply dark:text-darkmode-text dark:bg-darkmode-bg;
   background-color: #f6eedf;
 }
-body {
+.main {
   @apply dark:text-darkmode-text dark:bg-darkmode-bg;
-  background-color: #f6eedf;
-}
-main {
-  @apply dark:text-darkmode-text dark:bg-darkmode-bg;
-  background-color: #f6eedf;
-  transition: 0.5s;
-  height: 100vh;
-  top: 0;
-  position: absolute;
+  display: flex;
   width: 100vw;
+  height: 100vh;
+  transition: 0.5s;
+  justify-content: center;
+  align-items: center;
 }
-.navbar {
+.loginDiv {
+  position: relative;
+  text-align: center;
+  padding: 48px;
+  height: 500px;
+  width: 448px;
+}
+.BtnsLogin {
+  width: 79%;
+  position: absolute;
+  bottom: 48px;
+}
+/* .navbar {
   @apply dark:bg-darkmode-accent dark:text-darkmode-text;
   position: fixed;
   width: 80px;
@@ -107,13 +116,13 @@ main {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
+} */
 @media (max-height: 534px) {
-  .menuListBottom {
+  /* .menuListBottom {
     position: relative;
     bottom: 0;
     width: 100%;
-  }
+  } */
 }
 .cardImage {
   align-items: center;
