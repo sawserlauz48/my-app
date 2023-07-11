@@ -1,7 +1,7 @@
 import imagePlace from "../images/DSC_2460.JPG";
 const CardComponent = () => {
   return (
-    <div className="max-w-sm rounded-lg shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:border-blue-900 dark:hover:bg-blue-900">
+    <div className="max-w-sm rounded-lg shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent dark:border-blue-900 dark:hover:bg-blue-900">
       <a href="#">
         <img className="rounded-t-lg" src={imagePlace} alt="" />
       </a>

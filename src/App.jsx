@@ -20,13 +20,8 @@ function App() {
       {/* <header>
         <Navbar />
       </header> */}
-      <main className="main flex flex-col">
-        <CardComponent></CardComponent>
-        <Listcomponent></Listcomponent>
-        <InputComponent></InputComponent>
-        <CheckboxComponent></CheckboxComponent>
-        <ButtonComponent></ButtonComponent>
-        {/* <LoginPage></LoginPage> */}
+      <main className="main flex flex-col bg-lightmode-bg dark:bg-darkmode-bg text-lightmode-text dark:text-darkmode-text">
+        <LoginPage></LoginPage>
       </main>
     </div>
   );
