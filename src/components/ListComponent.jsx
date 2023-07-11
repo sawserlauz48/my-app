@@ -1,38 +1,53 @@
 import imagePlace from "../images/DSC_2460.JPG";
 
-const Listcomponent = () => {
+const Listcomponent = ({ image, name, description, price }) => {
   return (
-    <div>
-      <ul>
-        <li className="listLi my-2 px-1 grid grid-cols-12 gap-1 content-center h-20 bg-lightmode-accent rounded-sm dark:bg-darkmode-accent">
-          <div className="listTitle col-span-3 col-start-1 font-bold self-center">
-            iskander kebab
-          </div>
-          <div className="listDis col-span-5 col-start-4 dark:text-slate-400 text-slate-600 self-center">
-            kebab with bread with tometo souce and yogurt with cheri and parsly
-          </div>
-          <div className=" listPrice col-span-1 col-start-9 colst dark:text-slate-300 text-slate-800 justify-self-center self-center ">
-            70$
-          </div>
-          <div className=" listImage col-span-3 col-start-10 justify-self-end">
-            <img className=" rounded-sm " src={imagePlace} alt="" />
-          </div>
-        </li>
-        <li className="listLi my-2 px-1 grid grid-cols-12 gap-1 content-center h-20 bg-lightmode-accent rounded-sm dark:bg-darkmode-accent">
-          <div className="listTitle col-span-3 col-start-1 font-bold self-center">
-            iskander kebab
-          </div>
-          <div className="listDis col-span-5 col-start-4 dark:text-slate-400 text-slate-600 self-center">
-            kebab with bread with tometo souce and yogurt with cheri and parsly
-          </div>
-          <div className=" listPrice col-span-1 col-start-9 colst dark:text-slate-300 text-slate-800 justify-self-center self-center ">
-            70$
-          </div>
-          <div className=" listImage col-span-3 col-start-10 justify-self-end">
-            <img className=" rounded-sm " src={imagePlace} alt="" />
-          </div>
-        </li>
-      </ul>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-full text-sm text-left text-lightmode-text dark:text-darkmode-text">
+        {/* <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              <span className="sr-only">Image</span>
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Product
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Qty
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Price
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Action
+            </th>
+          </tr>
+        </thead> */}
+        <tbody>
+          <tr className=" shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:border-blue-900 dark:hover:bg-blue-900">
+            <td className="w-32 p-4">
+              <img src={imagePlace} alt="Apple Watch" />
+            </td>
+            <td className=" font-bold text-lg px-6 py-4 text-gray-900 dark:text-white">
+              niskander kebab
+            </td>
+            <td className="px-6 py-4 text-slate-500 dark:text-slate-500">
+              description: is it with bread yes and yugort
+            </td>
+            <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
+              $599
+            </td>
+            <td className="px-6 py-4">
+              <a
+                href="#"
+                className="font-medium text-red-600 dark:text-red-500 hover:underline"
+              >
+                Remove
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
