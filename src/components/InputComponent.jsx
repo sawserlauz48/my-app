@@ -1,7 +1,8 @@
-const InputComponent = ({ id, label, name, type }) => {
+const InputComponent = ({ id, label, name, type, isRiq }) => {
   return (
     <div className="relative z-0 mt-5">
       <input
+        required={isRiq}
         type={type}
         id={id}
         className="block py-2.5 px-0 w-full text-sm text-lightmode-text bg-transparent border-0 border-b-2 border-lightmode-pBtn appearance-none dark:text-darkmode-text dark:border-blue-900 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-lightmode-pBtn peer"

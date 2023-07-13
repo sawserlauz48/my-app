@@ -10,6 +10,8 @@ import LoginPage from "./pages/LoginPage";
 import image from "../src/images/DSC_2427.JPG";
 import CheckboxComponent from "./components/CheckboxComponent";
 import ButtonComponent from "./components/ButtonComponent";
+import RegisterPage from "./pages/RegisterPage";
+import arrow from "../src/images/arrow.svg";
 
 function App() {
   const isDarkTheme = useSelector(
@@ -17,12 +19,15 @@ function App() {
   );
   return (
     <div className={isDarkTheme}>
-      {/* <header>
-        <Navbar />
-      </header> */}
-      <main className="main flex flex-col bg-lightmode-bg dark:bg-darkmode-bg text-lightmode-text dark:text-darkmode-text">
-        <LoginPage></LoginPage>
-      </main>
+      <div className="bg-lightmode-bg dark:bg-darkmode-bg text-lightmode-text dark:text-darkmode-text">
+        <header>
+          <Navbar></Navbar>
+        </header>
+
+        <main className="main flex flex-col ">
+          <RegisterPage></RegisterPage>
+        </main>
+      </div>
     </div>
   );
 }
