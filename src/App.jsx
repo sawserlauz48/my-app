@@ -23,10 +23,7 @@ function App() {
         <header>
           <Navbar></Navbar>
         </header>
-
-        <main className="main flex flex-col ">
-          <RegisterPage></RegisterPage>
-        </main>
+        <main></main>
       </div>
     </div>
   );

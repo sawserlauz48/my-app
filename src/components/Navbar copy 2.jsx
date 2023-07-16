@@ -50,59 +50,54 @@ const Navbar = () => {
   console.log(isNavOpen, "isnavopen");
 
   return (
-    <nav className="navbar dark:bg-darkmode-accent dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px] border-slate-50">
-      <div className="drawer-swipe"></div>
+    <nav className="navbar dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px] border-slate-50">
       {/* <div
         className="menuToggle flex justify-center items-center hover:text-lightmode-pBtn hover:cursor-pointer"
         onClick={toggleNavbar}
       >
         {isNavOpen ? arrowLeft : arrowRight}
       </div> */}
-      <ul className="navbar-nav grid grid-cols-1">
-        <li className="nav-item logo flex-row">
-          <a href="#" className="nav-link flex flex-row">
+      <ul className="navbar-nav">
+        <li className="nav-item logo">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{homeIcon}</div>
             <span className="link-text">logo</span>
           </a>
         </li>
-        <li className="my-1 divider text-slate-400 text-xs flex justify-center">
-          MENU
-        </li>
+        <li className="my-1 divider text-slate-400 text-xs">MENU</li>
         <li className="nav-item">
-          <a href="#" className="nav-link flex flex-row">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{truckIcon}</div>
             <span className="link-text">Take away</span>
           </a>
         </li>
-        <li className="nav-item ">
-          <a href="#" className="nav-link flex flex-row">
+        <li className="nav-item">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{orderTableIcon}</div>
             <span className="link-text">Order table</span>
           </a>
         </li>
-        <li className="nav-item ">
-          <a href="#" className="nav-link flex flex-row">
+        <li className="nav-item">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{infoIcon}</div>
             <span className="link-text">About us</span>
           </a>
         </li>
-        <li className="divider nav-item mt-2 text-slate-400 text-xs flex justify-center">
-          PROFILE
-        </li>
-        <li className="nav-item ">
-          <a href="#" className="nav-link flex flex-row">
+        <li className="divider mt-2 text-slate-400 text-xs">PROFILE</li>
+        <li className="nav-item">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{profileIcon}</div>
             <span className="link-text">Profie page</span>
           </a>
         </li>
-        <li className="nav-item  ">
-          <a href="#" className="nav-link flex flex-row" onClick={changeTheme}>
+        <li className="nav-item">
+          <a href="#" className="nav-link" onClick={changeTheme}>
             <div className="nav-icon">{sunIcon}</div>
             <span className="link-text">Theme</span>
           </a>
         </li>
-        <li className="nav-item ">
-          <a href="#" className="nav-link flex flex-row">
+        <li className="nav-item">
+          <a href="#" className="nav-link">
             <div className="nav-icon">{loginIcon}</div>
             <span className="link-text">Sing in</span>
           </a>
