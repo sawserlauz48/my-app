@@ -12,6 +12,8 @@ import CheckboxComponent from "./components/CheckboxComponent";
 import ButtonComponent from "./components/ButtonComponent";
 import RegisterPage from "./pages/RegisterPage";
 import arrow from "../src/images/arrow.svg";
+import HomePage from "./pages/HomePage";
+import Footer from "./components/Footer";
 
 function App() {
   const isDarkTheme = useSelector(
@@ -23,7 +25,12 @@ function App() {
         <header>
           <Navbar></Navbar>
         </header>
-        <main></main>
+        <main>
+          <HomePage></HomePage>
+          {/* <RegisterPage></RegisterPage> */}
+          {/* <LoginPage></LoginPage> */}
+        </main>
+        <Footer></Footer>
       </div>
     </div>
   );
