@@ -9,12 +9,10 @@ const itemSchema = new mongoose.Schema({
     title: DEFAULT_STRING_SCHEMA_REQUIRED,
     description: { ...DEFAULT_STRING_SCHEMA_REQUIRED, maxLength: 1024 },
     image: Image,
-    price: {
-        type: String,
-        required: true,
-        trim: true,
-        minLength: 1,
-    },
+    price:
+        [Number]
+    ,
+    course: DEFAULT_STRING_SCHEMA,
     dietary: DEFAULT_STRING_SCHEMA,
     ingredients: [String],
     likes: [String],

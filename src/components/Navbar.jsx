@@ -47,17 +47,10 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsNavOpen(!isNavOpen);
   };
-  console.log(isNavOpen, "isnavopen");
 
   return (
     <nav className="navbar dark:bg-darkmode-accent dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px] border-slate-50">
       <div className="drawer-swipe"></div>
-      {/* <div
-        className="menuToggle flex justify-center items-center hover:text-lightmode-pBtn hover:cursor-pointer"
-        onClick={toggleNavbar}
-      >
-        {isNavOpen ? arrowLeft : arrowRight}
-      </div> */}
       <ul className="navbar-nav grid grid-cols-1">
         <li className="nav-item logo flex-row">
           <a href="#" className="nav-link flex flex-row">

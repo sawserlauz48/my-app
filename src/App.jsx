@@ -14,6 +14,7 @@ import RegisterPage from "./pages/RegisterPage";
 import arrow from "../src/images/arrow.svg";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
+import TakeAway from "./pages/TakeAwayPage";
 
 function App() {
   const isDarkTheme = useSelector(
@@ -26,7 +27,8 @@ function App() {
           <Navbar></Navbar>
         </header>
         <main>
-          <HomePage></HomePage>
+          <TakeAway></TakeAway>
+          {/* <HomePage></HomePage> */}
           {/* <RegisterPage></RegisterPage> */}
           {/* <LoginPage></LoginPage> */}
         </main>

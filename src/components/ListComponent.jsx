@@ -1,41 +1,22 @@
-import imagePlace from "../images/DSC_2460.JPG";
+import PropTypes from "prop-types";
 
-const Listcomponent = ({ image, name, description, price }) => {
+const Listcomponent = ({ name, price, description, image, id }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-lightmode-text dark:text-darkmode-text">
-        {/* <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              <span className="sr-only">Image</span>
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Product
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Qty
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Price
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead> */}
         <tbody>
           <tr className=" shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:border-blue-900 dark:hover:bg-blue-900">
             <td className="w-32 p-4">
-              <img src={imagePlace} alt="Apple Watch" />
+              <img className="rounded-md" src={image} alt={name} />
             </td>
             <td className=" font-bold text-lg px-6 py-4 text-gray-900 dark:text-white">
-              niskander kebab
+              {name}
             </td>
             <td className="px-6 py-4 text-slate-500 dark:text-slate-500">
-              description: is it with bread yes and yugort
+              {description}
             </td>
             <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
-              $599
+              {price}₪
             </td>
             <td className="px-6 py-4">
               <a
@@ -50,6 +31,23 @@ const Listcomponent = ({ image, name, description, price }) => {
       </table>
     </div>
   );
+};
+
+Listcomponent.propTypes = {
+  id: PropTypes.string,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  // onDelete: PropTypes.func,
+  // onEdit: PropTypes.func,
+  // canEdit: PropTypes.bool,
+};
+
+Listcomponent.defaultProps = {
+  image:
+    "https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail-300x225.jpg",
+  alt: "",
+  canEdit: false,
 };
 
 export default Listcomponent;

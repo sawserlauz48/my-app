@@ -7,7 +7,7 @@ const HomePage = () => {
     <div className="flex flex-col">
       <div className="">
         <img
-          class="h-auto max-w-full"
+          className="h-auto max-w-full"
           src={imagePlace}
           alt="image description"
         />
