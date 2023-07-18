@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import imagePlace from "../images/DSC_2460.JPG";
+import imagePlace from "../images/DSC_2477.JPG";
 import ButtonComponent from "../components/ButtonComponent";
 
 const HomePage = () => {

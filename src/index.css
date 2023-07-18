@@ -187,9 +187,42 @@ footer {
     display: block;
   }
 }
+.listGrid {
+  padding: 48px;
+}
+.tdImage {
+  max-width: 96px;
+  min-width: 96px;
+  max-height: 96px;
+  min-height: 96px;
+}
 /* register page */
 @media (max-width: 640px) {
   .registerNamesInput {
     @apply grid-cols-1 gap-0;
   }
+  .tdDescription {
+    display: none;
+  }
+  .tdTitle {
+    padding-left: 0;
+  }
+  .listGrid {
+    padding: 5px;
+  }
+}
+tr {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+td:nth-child(4) {
+  margin-left: auto;
+}
+.cardGrid {
+  @apply grid-cols-1;
+
+  justify-content: center;
+}
+.cardP {
 }
