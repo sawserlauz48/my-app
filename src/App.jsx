@@ -14,6 +14,10 @@ import arrow from "../src/images/arrow.svg";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import TakeAway from "./pages/TakeAwayPage";
+import NoCardsPartial from "./components/NoCardPartial";
+import ItemInfo from "./pages/ItemInfo";
+import Router from "./routes/router";
+import Popup from "./components/Popup";
 
 function App() {
   const isDarkTheme = useSelector(
@@ -26,7 +30,10 @@ function App() {
           <Navbar></Navbar>
         </header>
         <main>
-          <TakeAway></TakeAway>
+          <Router></Router>
+          {/* <NoCardsPartial></NoCardsPartial> */}
+          {/* <ItemInfo></ItemInfo> */}
+          {/* <TakeAway></TakeAway> */}
           {/* <HomePage></HomePage> */}
           {/* <RegisterPage></RegisterPage> */}
           {/* <LoginPage></LoginPage> */}

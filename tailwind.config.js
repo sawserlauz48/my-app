@@ -5,6 +5,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      backgroundImage: {
+        'check-light-pattern': "url('./images/check-lg.svg')",
+        'check-dark-pattern': "url('./images/check-w-lg.svg')",
+      },
       colors: {
         "darkmode-bg": "#02031D",
         "darkmode-pBtn": "#C79338",

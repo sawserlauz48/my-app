@@ -23,10 +23,6 @@ const LoginPage = () => {
             <div className="flex items-center h-5">
               <CheckboxComponent label={"Remember me"} />
             </div>
-            <label
-              htmlFor="remember"
-              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            ></label>
           </div>
         </div>
         <ButtonComponent label={"Sign in"}></ButtonComponent>

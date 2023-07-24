@@ -1,8 +1,25 @@
 import PropTypes from "prop-types";
 
-const Listcomponent = ({ name, price, description, image, id }) => {
+const Listcomponent = ({
+  name,
+  price,
+  description,
+  image,
+  id,
+  onOpen,
+  onItemClick,
+}) => {
+  const openInfo = () => {
+    onOpen(id);
+  };
+  const handleItemClick = () => {
+    onItemClick(id);
+  };
   return (
-    <div className="relative overflow-x-auto sm:rounded-lg shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:border-blue-900 dark:hover:bg-blue-900">
+    <div
+      onClick={handleItemClick}
+      className="relative overflow-x-auto sm:rounded-lg shadow-lg bg-lightmode-bg border-lightmode-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:border-blue-900 dark:hover:bg-blue-900"
+    >
       <table className="h-full w-full text-sm text-left text-lightmode-text dark:text-darkmode-text">
         <tbody>
           <tr className="w-full border dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px] border-slate-50">
@@ -18,14 +35,6 @@ const Listcomponent = ({ name, price, description, image, id }) => {
             <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
               {price}₪
             </td>
-            {/* <td className="px-6 py-4">
-              <a
-                href="#"
-                className="font-medium text-red-600 dark:text-red-500 hover:underline"
-              >
-                Remove
-              </a>
-            </td> */}
           </tr>
         </tbody>
       </table>
@@ -39,7 +48,7 @@ Listcomponent.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   // onDelete: PropTypes.func,
-  // onEdit: PropTypes.func,
+  onOpen: PropTypes.func,
   // canEdit: PropTypes.bool,
 };
 
