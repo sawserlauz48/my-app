@@ -1,6 +1,6 @@
 const InputComponent = ({ id, label, name, type, isRiq }) => {
   return (
-    <div className="relative z-0 mt-5">
+    <div className="relative z-0 mt-5 w-full">
       <input
         required={isRiq}
         type={type}

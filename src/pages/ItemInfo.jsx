@@ -2,11 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import CheckboxComponent from "../components/CheckboxComponent";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ButtonComponent from "../components/ButtonComponent";
 
 const ItemInfo = () => {
   const { id } = useParams();
   const navagite = useNavigate();
-  const [checkboxState, setCheckboxState] = useState("");
   const [state, setState] = useState({
     image: { url: "", alt: "" },
     ingredients: [],
@@ -35,45 +35,69 @@ const ItemInfo = () => {
 
   const handleDivClick = (event) => {
     event.stopPropagation();
-
-    console.log("clicked div");
-  };
-  const handleCheckClick = () => {
-    event.stopPropagation();
-    if ((checkboxState = "")) {
-      setCheckboxState("checked");
-    }
   };
 
   return (
     <div
       onClick={closeItemInfo}
-      className="itemInfo flex flex-col w-full  bg-lightmode-bg/50 dark:bg-darkmode-accent/50 sm:p-[48px] overflow-auto fixed top-0 left-0 z-[999] h-full items-center"
+      className="itemInfo flex flex-col w-full bg-lightmode-bg/50 dark:bg-darkmode-accent/50 sm:p-[48px] fixed top-0 left-0 z-[999] h-full items-center justify-center"
     >
       <div
         onClick={handleDivClick}
-        className="bg-lightmode-accent border dark:border-slate-700 h-full
-        border-slate-50 dark:bg-darkmode-accent w-full md:w-3/4  overflow-auto"
+        className="bg-lightmode-accent border dark:border-slate-700 h-max overflow-y-auto
+        border-slate-50 dark:bg-darkmode-accent rounded-[4px] p-[20px] w-full md:w-3/4 shadow-slate-600 shadow-md"
       >
-        <div className="grid grid-cols-2 gap-5">
+        <div className="flex flex-col items-center sm:items-start space-x-7 space-y-4 sm:flex-row ">
           <div>
-            <img src={state.image.url} alt={state.image.alt} />
+            <img
+              src={state.image.url}
+              alt={state.image.alt}
+              className="w-[320px]"
+            />
           </div>
-          <div>{state.description}</div>
+          <div className="space-y-4">
+            <div className=" font-bold text-4xl">{state.title}</div>
+            <div className="text-md">{state.description}</div>
+          </div>
         </div>
-        <div className="grid grid-cols-2">
+        <div className=" relative inline-flex items-center justify-center w-full py-2 mt-10 ">
+          <hr className=" w-3/4 h-[2px] bg-slate-300 border-0 dark:bg-slate-700 " />
+          <div className=" absolute  flex items-center rounded-[25px] px-3 font-medium text-white -translate-x-1/2 bg-lightmode-pBtn left-1/2 dark:text-white  border-[10px] border-lightmode-accent dark:border-darkmode-accent">
+            <span className=" relative bottom-[2px]">additions</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 px-[48px] py-2 mt-3 ">
           {state.ingredients.map((item) => (
             <div key={item}>
-              <CheckboxComponent
-                label={item}
-                onClick={handleCheckClick}
-                checkboxState={checkboxState}
-              ></CheckboxComponent>
+              <CheckboxComponent title={item} label={item}></CheckboxComponent>
             </div>
           ))}
-          {console.log(state, "inpopo")}
         </div>
-        <CheckboxComponent label={"asdasd"}></CheckboxComponent>
+        <div className=" relative inline-flex items-center justify-center w-full mt-10 ">
+          <hr className=" w-3/4 h-[2px] bg-slate-300 border-0 dark:bg-slate-700 " />
+          <div className=" absolute  flex items-center rounded-[25px] px-3 font-medium text-white -translate-x-1/2 bg-lightmode-pBtn left-1/2 dark:text-white  border-[10px] border-lightmode-accent dark:border-darkmode-accent">
+            <span className=" relative bottom-[2px]">special instruction</span>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center space-x-5">
+          <div className="relative z-0 mt-1 w-full sm:w-3/4 ">
+            <textarea
+              className="block py-2.5 px-0  w-full  text-sm text-lightmode-text bg-transparent border-0 border-b-2 border-lightmode-pBtn appearance-none dark:text-darkmode-text dark:border-blue-900 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-lightmode-pBtn peer"
+              placeholder={" "}
+              name=""
+              id="text"
+            ></textarea>
+            <lable
+              htmlFor={"text"}
+              className="flex absolute text-md text-lightmode-text dark:text-darkmode-text duration-300 transform -translate-y-6 scale-75 top-4 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-lightmode-pBtn peer-focus:dark:text-darkmode-pBtn peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Enter instruction here
+            </lable>
+          </div>
+          <div className="h-[10px] mt-2 sm:ml-auto w-full sm:w-1/4">
+            <ButtonComponent label={"Add dish"}></ButtonComponent>
+          </div>
+        </div>
       </div>
     </div>
   );
