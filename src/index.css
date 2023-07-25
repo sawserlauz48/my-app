@@ -6,7 +6,6 @@
   font-size: 16px;
 }
 button {
-  @apply hover:dark:bg-darkmode-pBtn-h dark:bg-darkmode-pBtn dark:text-white hover:bg-lightmode-pBtn-h bg-lightmode-pBtn text-black drop-shadow-xl;
   transition: 0.5s;
 }
 hedder {
