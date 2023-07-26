@@ -16,9 +16,14 @@ const DEFAULT_STRING_SCHEMA_REQUIRED = {
     minLength: 2,
     required: true,
 }
-
+const DEFAULT_NUMBER_SCHEMA_REQUIRED = {
+    ...DEFAULT_STRING_SCHEMA,
+    minLength: 1,
+    required: true,
+}
 module.exports = {
     URL,
     DEFAULT_STRING_SCHEMA,
     DEFAULT_STRING_SCHEMA_REQUIRED,
+    DEFAULT_NUMBER_SCHEMA_REQUIRED
 }

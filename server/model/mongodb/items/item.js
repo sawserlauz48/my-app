@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Image = require("./image");
 const {
-    URL,
+    URL, DEFAULT_NUMBER_SCHEMA_REQUIRED,
     DEFAULT_STRING_SCHEMA_REQUIRED, DEFAULT_STRING_SCHEMA
 } = require("./helpers/mongooseValidation");
 
@@ -10,7 +10,7 @@ const itemSchema = new mongoose.Schema({
     description: { ...DEFAULT_STRING_SCHEMA_REQUIRED, maxLength: 1024 },
     image: Image,
     price:
-        [Number]
+        DEFAULT_NUMBER_SCHEMA_REQUIRED
     ,
     course: DEFAULT_STRING_SCHEMA,
     dietary: DEFAULT_STRING_SCHEMA,

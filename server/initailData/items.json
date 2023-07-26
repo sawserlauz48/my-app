@@ -6,7 +6,7 @@
       "url": "https://i.ibb.co/Bcx2fJd/DSC-2465.jpg",
       "alt": "Greek salad"
     },
-    "price": [30, 48],
+    "price": 48,
     "ingredients": [
       "Lettuce",
       "cucumber",
@@ -25,7 +25,7 @@
       "url": "https://i.ibb.co/KsTSqtn/DSC-2495.jpg",
       "alt": "Rustic salad"
     },
-    "price": [30, 48],
+    "price": 48,
     "ingredients": [
       "Lettuce",
       "cucumber",
@@ -45,7 +45,7 @@
       "url": "https://i.ibb.co/pwLD3CH/DSC-2475.jpg",
       "alt": "Chicken salad"
     },
-    "price": [30, 54],
+    "price": 54,
     "ingredients": [
       "Lettuce",
       "cucumber",
@@ -67,7 +67,7 @@
       "url": "https://i.ibb.co/MDxfdQc/DSC-2442.jpg",
       "alt": "Homemade soup"
     },
-    "price": [30],
+    "price": 30,
     "ingredients": ["Red lentil", "Bread", "Paprika sauce"],
     "dietary": "all",
     "course": "starter"
@@ -79,7 +79,7 @@
       "url": "https://i.ibb.co/NKhx40P/DSC-2481.jpg",
       "alt": "Eggplants in Tabon"
     },
-    "price": [40],
+    "price": 40,
     "ingredients": ["Red lentil", "Bread", "Paprika sauce"],
     "dietary": "all",
     "course": "vegetarian"
@@ -91,7 +91,7 @@
       "url": "https://i.ibb.co/CwfdvRX/DSC-2449.jpg",
       "alt": "Stuffed dish"
     },
-    "price": [30],
+    "price": 80,
     "ingredients": ["Peppers", "eggplants", "Vine leaves"],
     "dietary": "vegan",
     "course": "starter"
@@ -103,7 +103,7 @@
       "url": "https://i.ibb.co/zR8WQmg/DSC-2455.jpg",
       "alt": "lahmajoun"
     },
-    "price": [15],
+    "price": 15,
     "ingredients": ["minced meat"],
     "dietary": "all",
     "course": "Pastries"
@@ -115,7 +115,7 @@
       "url": "https://i.ibb.co/gvyjcRX/DSC-2438.jpg",
       "alt": "Garlic bread"
     },
-    "price": [15],
+    "price": 15,
     "ingredients": ["garlic", "mozzarella cheese"],
     "dietary": "vegetarian",
     "course": "Pastries"
@@ -127,7 +127,7 @@
       "url": "https://i.ibb.co/3sphqdQ/DSC-2485.jpg",
       "alt": "Alfredo pizza"
     },
-    "price": [30],
+    "price": 30,
     "ingredients": ["mushroom cream", "mushrooms", "onions", "black olives"],
     "dietary": "vegetarian",
     "course": "Pastries"
@@ -139,7 +139,7 @@
       "url": "https://i.ibb.co/dQchtq5/DSC-2464.jpg",
       "alt": "Pizza"
     },
-    "price": [20],
+    "price": 20,
     "ingredients": ["tomato sauce", "mozzarella cheese"],
     "dietary": "vegetarian",
     "course": "Pastries"
@@ -151,7 +151,7 @@
       "url": "https://i.ibb.co/rF2Z9L8/DSC-2491.jpg",
       "alt": "Turkish Fida"
     },
-    "price": [25],
+    "price": 25,
     "ingredients": ["tomatoes", "onions", "mozzarella cheese"],
     "dietary": "all",
     "course": "Pastries"
@@ -163,7 +163,7 @@
       "url": "https://i.ibb.co/WPym7p7/DSC-2596.jpg",
       "alt": "Ciabatta kebab"
     },
-    "price": [30],
+    "price": 30,
     "ingredients": ["kebab", "onions", "tomatoes"],
     "dietary": "all",
     "course": "Sandwiches"
@@ -175,7 +175,7 @@
       "url": "https://i.ibb.co/gtMQXC9/DSC-2599.jpg",
       "alt": "Ciabatta kebab"
     },
-    "price": [30],
+    "price": 30,
     "ingredients": ["chicken breast", "onions", "tomatoes"],
     "dietary": "all",
     "course": "Sandwiches"
@@ -187,7 +187,7 @@
       "url": "https://i.ibb.co/F4zNkM6/DSC-2493.jpg",
       "alt": "Tantuni kebab"
     },
-    "price": [30],
+    "price": 30,
     "ingredients": ["kebab", "onions", "tomatoes"],
     "dietary": "all",
     "course": "Sandwiches"
@@ -199,7 +199,7 @@
       "url": "https://i.ibb.co/bLq5kBy/DSC-2477.jpg",
       "alt": "Tantuni chicken breast"
     },
-    "price": [25],
+    "price": 25,
     "ingredients": ["chicken breast", "onions", "tomatoes"],
     "dietary": "all",
     "course": "Sandwiches"
@@ -211,7 +211,7 @@
       "url": "https://i.ibb.co/4Ws86mD/DSC-2486.jpg",
       "alt": "Metaza"
     },
-    "price": [52],
+    "price": 52,
     "ingredients": ["yogurt ", "Paprika sauce"],
     "dietary": "vegetarian",
     "course": "main"
@@ -223,7 +223,7 @@
       "url": "https://i.ibb.co/2vpXzy9/DSC-2471.jpg",
       "alt": "Ravioli"
     },
-    "price": [52],
+    "price": 52,
     "ingredients": [
       "Cream ",
       "Mushroom cream ",
@@ -242,7 +242,7 @@
       "url": "https://i.ibb.co/D1KD8XZ/DSC-2497.jpg",
       "alt": "Manti"
     },
-    "price": [58],
+    "price": 58,
     "ingredients": ["yogurt ", "garlic yogurt", "tomato sauce"],
     "dietary": "all",
     "course": "main"
@@ -254,7 +254,7 @@
       "url": "https://i.ibb.co/Ch9vb27/DSC-2462.jpg",
       "alt": "Iskander kebab"
     },
-    "price": [70],
+    "price": 70,
     "ingredients": ["tomato sauce ", "yogurt", "eggplant", "Ciabatta"],
     "dietary": "all",
     "course": "main"
@@ -266,7 +266,7 @@
       "url": "https://i.ibb.co/bgqNGjW/DSC-2489.jpg",
       "alt": "Kebab in the Tabun"
     },
-    "price": [70],
+    "price": 70,
     "ingredients": [
       "tomato sauce",
       "eggplant",
@@ -284,7 +284,7 @@
       "url": "https://i.ibb.co/n1gnktp/DSC-2600.jpg",
       "alt": "Lemonade with mint"
     },
-    "price": [15, 28],
+    "price": 28,
     "ingredients": ["mint"],
     "dietary": "vegan",
     "course": "drink"
@@ -296,7 +296,7 @@
       "url": "",
       "alt": "Soft drink"
     },
-    "price": [15],
+    "price": 15,
     "ingredients": ["coke", "sprite", "grape juice", "orange juice", "water"],
     "dietary": "vegan",
     "course": "drink"

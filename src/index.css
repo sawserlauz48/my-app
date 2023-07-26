@@ -133,7 +133,7 @@ footer {
     display: none;
   }
   .navbar {
-    @apply bg-lightmode-accent pb-10 rounded-t-[1rem] border-x-[1px] border-t-[1px] border-slate-300 dark:border-x-[1px] dark:border-t-[1px] dark:border-slate-800;
+    @apply bg-lightmode-accent pb-10 rounded-t-[1rem] border-x-[1px] border-t-[1px] border-slate-300 dark:border-x-[1px] dark:border-t-[1px] dark:border-slate-800 fixed;
     width: 100%;
     height: 5rem;
     display: fixed;
@@ -210,7 +210,7 @@ footer {
     padding-left: 0;
   }
   .listGrid {
-    padding: 5px;
+    padding: 50px 10px 10px;
   }
 }
 tr {

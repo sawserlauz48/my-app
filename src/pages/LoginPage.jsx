@@ -1,6 +1,8 @@
 import InputComponent from "../components/InputComponent";
 import ButtonComponent from "../components/ButtonComponent";
 import CheckboxComponent from "../components/CheckboxComponent";
+import { Link } from "react-router-dom";
+import ROUTES from "../routes/ROUTES";
 
 const LoginPage = () => {
   return (
@@ -26,14 +28,13 @@ const LoginPage = () => {
           </div>
         </div>
         <ButtonComponent label={"Sign in"}></ButtonComponent>
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+        <div className="flex text-sm font-medium text-gray-500 dark:text-gray-300">
           Not registered?
-          <a
-            href="#"
-            className="ml-1 text-lightmode-pBtn hover:underline dark:text-lightmode-pBtn"
-          >
-            Create account
-          </a>
+          <Link to={ROUTES.REGISTER}>
+            <div className="ml-1 text-lightmode-pBtn hover:underline dark:text-lightmode-pBtn">
+              Create account
+            </div>
+          </Link>
         </div>
       </form>
     </div>

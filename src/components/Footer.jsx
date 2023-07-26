@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-lightmode-accent dark:bg-darkmode-accent dark:text-darkmode-text text-base-content rounded">
+    <footer className="footer footer-center p-10 bg-lightmode-bg sm:bg-lightmode-accent dark:bg-darkmode-bg sm:dark:bg-darkmode-accent dark:text-darkmode-text text-base-content rounded">
       <div>
         <div className="flex gap-2">
           <a>
