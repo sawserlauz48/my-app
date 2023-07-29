@@ -13,8 +13,8 @@ const registerSchema = Joi.object({
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,})/)).min(6).max(16).required(),
     image: Joi.object().keys({
         url: Joi.string()
-            .regex(new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/)),
-        alt: Joi.string().min(2).max(256).required(),
+            .regex(new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/)).allow(""),
+        alt: Joi.string().min(2).max(256).allow(""),
     }),
     address: Joi.object().keys({
         country: Joi.string().min(2).max(256).required(),
@@ -22,7 +22,7 @@ const registerSchema = Joi.object({
         street: Joi.string().min(2).max(256).allow(""),
         houseNumber: Joi.number().min(1).allow(""),
     }).required(),
-    isEmployed: Joi.bool().required(),
+    isEmployed: Joi.bool().allow(""),
     isAdmin: Joi.bool().allow(""),
 });
 

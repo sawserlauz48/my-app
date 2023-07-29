@@ -5,30 +5,36 @@ import { useNavigate } from "react-router-dom";
 import validateRegisterSchema from "../validations/registerValidation";
 import { toast } from "react-toastify";
 import ROUTES from "../routes/ROUTES";
+import axios from "axios";
 const inputs = [
-  { label: "Email", name: "email", isRiq: true },
-  { label: "Password", name: "password", isRiq: true, type: "password" },
+  { label: "Email *", name: "email", isRiq: true, type: "email" },
   {
-    label: "Conferm password",
-    name: "passwordCon",
+    label: "Password *",
+    name: "password",
+    isRiq: true,
+    type: "password",
+  },
+  {
+    label: "Confirm password *",
+    name: "passwordConfirm",
     isRiq: true,
     type: "password",
   },
 ];
 const AddressInputs = [
-  { label: "Country", name: "country", isRiq: true },
-  { label: "City", name: "city", isRiq: true },
-  { label: "Street", name: "street", isRiq: true },
-  { label: "House number", name: "houseNumber", isRiq: true },
+  { label: "Country *", name: "country", isRiq: true },
+  { label: "City *", name: "city", isRiq: true },
+  { label: "Street *", name: "street", isRiq: true },
+  { label: "House number *", name: "houseNumber", isRiq: true },
 ];
 const imageInputs = [
   { label: "Image Url", name: "imageUrl", isRiq: false },
   { label: "Image Alt", name: "imageAlt", isRiq: false },
 ];
 const nameInputs = [
-  { label: "First name", name: "firstName", isRiq: true },
-  { label: "Last name", name: "lastName", isRiq: true },
-  { label: "Phone", name: "phone", isRiq: true, type: "number" },
+  { label: "First name *", name: "firstName", isRiq: true },
+  { label: "Last name *", name: "lastName", isRiq: true },
+  { label: "Phone *", name: "phone", isRiq: true, type: "number" },
 ];
 
 const RegisterPage = () => {
@@ -38,6 +44,7 @@ const RegisterPage = () => {
     phone: "",
     email: "",
     password: "",
+    passwordConfirm: "",
     imageUrl: "",
     imageAlt: "",
     country: "",
@@ -45,36 +52,25 @@ const RegisterPage = () => {
     street: "",
     houseNumber: "",
   });
-  const [disabled, setDisabled] = useState(true);
-  const [inputsErrorsState, setInputsErrorsState] = useState(null);
+  const [inputsErrorsState, setInputsErrorsState] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const joiResponse = validateRegisterSchema(inputState);
-    setInputsErrorsState(joiResponse);
-    handleDisabledBtn();
-  }, [inputState]);
-  const handleDisabledBtn = () => {
-    const joiResponse = validateRegisterSchema(inputState);
-    if (!joiResponse) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
-  const handleInputChange = (ev) => {
+  useEffect(() => {}, [inputState]);
+
+  const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
-    newInputState[ev.target.id] = ev.target.value;
+    newInputState[event.target.id] = event.target.value;
     setInputState(newInputState);
   };
-  const handleSignInBtn = async (ev) => {
+
+  const handleSignInBtn = async () => {
     try {
       const joiResponse = validateRegisterSchema(inputState);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;
       }
-      await axios.post("/users/register", {
+      await axios.post("http://localhost:8181/api/users/", {
         name: {
           firstName: inputState.firstName,
           lastName: inputState.lastName,
@@ -95,7 +91,7 @@ const RegisterPage = () => {
       });
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      toast.error(err.response.data);
+      console.log(err);
     }
   };
 
@@ -112,7 +108,7 @@ const RegisterPage = () => {
             required={input.isRiq}
             onChange={handleInputChange}
             inputsErrorsState={inputsErrorsState}
-            // type={input.type}
+            type={input.type}
             inputState={inputState}
           ></InputComponent>
         </div>
@@ -123,10 +119,10 @@ const RegisterPage = () => {
             <InputComponent
               label={input.label}
               name={input.name}
-              isRiq={input.isRiq}
+              required={input.isRiq}
               onChange={handleInputChange}
               inputsErrorsState={inputsErrorsState}
-              // type={input.type}
+              type={input.type}
               inputState={inputState}
             ></InputComponent>
           </div>
@@ -138,10 +134,10 @@ const RegisterPage = () => {
             <InputComponent
               label={input.label}
               name={input.name}
-              isRiq={input.isRiq}
+              required={input.isRiq}
               onChange={handleInputChange}
               inputsErrorsState={inputsErrorsState}
-              // type={input.type}
+              type={input.type}
               inputState={inputState}
             ></InputComponent>
           </div>
@@ -154,83 +150,20 @@ const RegisterPage = () => {
               key={input.name + Date.now()}
               label={input.label}
               name={input.name}
-              isRiq={input.isRiq}
+              required={input.isRiq}
               onChange={handleInputChange}
               inputsErrorsState={inputsErrorsState}
-              // type={input.type}
+              type={input.type}
               inputState={inputState}
             ></InputComponent>
           </div>
         ))}
       </div>
-      <ButtonComponent label={"Sign up"}></ButtonComponent>
-
-      <button
-        id="dropdownDefaultButton"
-        data-dropdown-toggle="dropdown"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Dropdown button{" "}
-        <svg
-          class="w-2.5 h-2.5 ml-2.5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
-      </button>
-
-      <div
-        id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-      >
-        <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
-        >
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Settings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Earnings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Sign out
-            </a>
-          </li>
-        </ul>
-      </div>
+      <ButtonComponent
+        onclick={handleSignInBtn}
+        // isDisable={isDisable}
+        label={"Sign up"}
+      ></ButtonComponent>
     </div>
   );
 };

@@ -3,8 +3,14 @@ import ButtonComponent from "../components/ButtonComponent";
 import CheckboxComponent from "../components/CheckboxComponent";
 import { Link } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const [inputState, setInputState] = useState({
+    email: "",
+    password: "",
+  });
+
   return (
     <div className="overflow-auto w-full max-w-sm p-4 bg-lightmode-accent border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form className="space-y-6" action="#">
@@ -15,10 +21,20 @@ const LoginPage = () => {
           to continue to Anatolia
         </h4>
         <div>
-          <InputComponent label={"E-mail"} id={"email"}></InputComponent>
+          <InputComponent
+            inputState={inputState.email}
+            name={"email"}
+            label={"E-mail"}
+            id={"email"}
+          ></InputComponent>
         </div>
         <div>
-          <InputComponent label={"Password"} id={"password"}></InputComponent>
+          <InputComponent
+            inputState={inputState.password}
+            name={"password"}
+            label={"Password"}
+            id={"password"}
+          ></InputComponent>
         </div>
         <div className="flex items-start">
           <div className="flex items-start">
