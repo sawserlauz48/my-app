@@ -10,7 +10,7 @@ const TakeAway = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:8181/api/items/")
+      .get("items/")
       .then(({ data }) => {
         setAllItems(data.allItems);
       })

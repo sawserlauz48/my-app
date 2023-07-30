@@ -9,6 +9,7 @@ const CustomError = require("../../utils/CustomError");
 const authMw = require("../../middleware/authMiddleware");
 const permissionsMiddleware = require("../../middleware/permissionsMiddleware");
 const chalk = require("chalk");
+const customError = require("../../utils/CustomError")
 
 
 
@@ -16,6 +17,11 @@ const chalk = require("chalk");
 
 router.post("/", async (req, res) => {
     try {
+        const isUserExists = await usersServiceModel.getUserByEmail(req.body.email)
+        if (isUserExists) {
+            throw new customError("email allredy in use"
+            )
+        }
         await userValidationService.registerUserValidation(req.body);
         req.body.password = await hashService.generateHash(req.body.password);
         req.body = normalizeUser(req.body);

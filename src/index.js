@@ -8,7 +8,7 @@ import store from "./store/bigPie"
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 
-axios.defaults.baseURL = "/api";
+axios.defaults.baseURL = "http://localhost:8181/api/";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -55,8 +55,6 @@ const RegisterPage = () => {
   const [inputsErrorsState, setInputsErrorsState] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {}, [inputState]);
-
   const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[event.target.id] = event.target.value;
@@ -70,7 +68,7 @@ const RegisterPage = () => {
       if (joiResponse) {
         return;
       }
-      await axios.post("http://localhost:8181/api/users/", {
+      await axios.post("users/", {
         name: {
           firstName: inputState.firstName,
           lastName: inputState.lastName,
@@ -89,9 +87,10 @@ const RegisterPage = () => {
           alt: inputState.imageAlt,
         },
       });
+      toast.success("Register succesful");
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      console.log(err);
+      toast.error(err.response.data.msg);
     }
   };
 
