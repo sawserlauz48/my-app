@@ -1,8 +1,11 @@
 import { Fragment } from "react";
 import imagePlace from "../images/DSC_2477.JPG";
 import ButtonComponent from "../components/ButtonComponent";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
+  const isLoggedIn = useSelector((bigPie) => bigPie.authSlice.isLoggedIn);
   return (
     <div className="flex flex-col">
       <div className="">

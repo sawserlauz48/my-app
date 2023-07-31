@@ -12,14 +12,13 @@ const useLoggedIn = () => {
             if (!token) {
                 return;
             }
-            await axios.get("/users/userInfo");
             const payload = jwt_decode(token);
+            const userId = payload._id
+            await axios.get(`/users/${userId}`);
             dispatch(authActions.login(payload));
             dispatch(adminAuthActions.admin(payload));
         } catch (err) {
-
             toast.error("invalid token")
-
         }
     };
 };

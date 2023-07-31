@@ -20,12 +20,10 @@ const LoginPage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[event.target.id] = event.target.value;
     setInputState(newInputState);
-    console.log(inputState);
   };
   const handleBtnClick = async () => {
     try {
       const { data } = await axios.post("/users/login", inputState);
-      console.log(data, "data");
       localStorage.setItem("token", data.token);
       loggedIn();
       navigate(ROUTES.HOME);
@@ -59,6 +57,7 @@ const LoginPage = () => {
             label={"Password"}
             id={"password"}
             onChange={handleInputChange}
+            type={"password"}
           ></InputComponent>
         </div>
         <div className="flex items-start">

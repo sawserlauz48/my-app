@@ -25,11 +25,11 @@ const pages = [
 ];
 
 const Navbar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
   );
+  const isLoggedIn = useSelector((bigPie) => bigPie.authSlice.isLoggedIn);
 
   const changeTheme = () => {
     if (isDarkTheme === "light") {
@@ -38,6 +38,10 @@ const Navbar = () => {
     if (isDarkTheme === "dark") {
       dispatch(darkThemeActions.setToLightTheme());
     }
+  };
+  const logoutClick = () => {
+    localStorage.clear();
+    dispatch(authActions.logout());
   };
 
   return (
@@ -94,11 +98,19 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav-item ">
-          <NavLinkComponent
-            url={ROUTES.LOGIN}
-            icon={loginIcon}
-            label={"Sign in"}
-          ></NavLinkComponent>
+          {isLoggedIn ? (
+            <NavLinkComponent
+              url={ROUTES.LOGOUT}
+              icon={logoutIcon}
+              label={"Sign out"}
+            />
+          ) : (
+            <NavLinkComponent
+              url={ROUTES.LOGIN}
+              icon={loginIcon}
+              label={"Sign in"}
+            />
+          )}
         </li>
       </ul>
     </nav>
