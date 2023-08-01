@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-const NavLinkComponent = ({ url, label, icon, ...rest }) => {
+const NavLinkComponent = ({ url, label, icon, onclick, ...rest }) => {
   return (
     <div className="nav-link flex flex-row">
       <NavLink
+        onClick={onclick}
         to={url}
         {...rest}
         className={({ isActive }) =>

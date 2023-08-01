@@ -11,9 +11,10 @@ import {
 } from "../images/svgs";
 import { useDispatch, useSelector } from "react-redux";
 import { darkThemeActions } from "../store/darkTheme";
-import { useEffect, useState } from "react";
 import ROUTES from "../routes/ROUTES";
 import NavLinkComponent from "./NavLinkComponent";
+import { authActions } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
   { label: "Home", url: ROUTES.HOME },
@@ -25,6 +26,7 @@ const pages = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
@@ -42,6 +44,7 @@ const Navbar = () => {
   const logoutClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
+    // navigate(ROUTES.HOME);
   };
 
   return (
@@ -100,9 +103,10 @@ const Navbar = () => {
         <li className="nav-item ">
           {isLoggedIn ? (
             <NavLinkComponent
-              url={ROUTES.LOGOUT}
+              // url={ROUTES.LOGOUT}
               icon={logoutIcon}
               label={"Sign out"}
+              onClick={logoutClick}
             />
           ) : (
             <NavLinkComponent

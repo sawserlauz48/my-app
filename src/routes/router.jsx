@@ -26,7 +26,6 @@ const Router = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route path={ROUTES.REGISTER} element={<RegisterPage />}></Route>
       <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
-      <Route path={ROUTES.LOGOUT} element={<LogoutPage />}></Route>
     </Routes>
   );
 };

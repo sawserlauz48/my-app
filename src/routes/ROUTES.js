@@ -4,7 +4,6 @@ const ROUTES = {
     ABOUT: "/about",
     REGISTER: "/register",
     LOGIN: "/login",
-    LOGOUT: "/logout",
     PROFILE: "/profile",
     TAKEAWAY: "/takeaway",
     ORDERTABLE: "/ordertable",
