@@ -5,6 +5,8 @@ import Footer from "./components/Footer";
 import Router from "./routes/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import QuantityComponent from "./components/QuantityComponent";
+import CartComponent from "./components/CartComponent";
 function App() {
   const isDarkTheme = useSelector(
     (bigpie) => bigpie.darkThemeSlice.isDarkTheme
@@ -29,6 +31,7 @@ function App() {
         </header>
         <main>
           <Router></Router>
+          <CartComponent />
         </main>
         <Footer></Footer>
       </div>

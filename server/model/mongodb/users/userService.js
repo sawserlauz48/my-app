@@ -28,6 +28,10 @@ const getUserByEmail = (email) => {
 const bizUserChange = async (filter, update) => {
     return User.updateOne(filter, update)
 }
+const addToCart = async (itemToAdd) => {
+    let user = User(itemToAdd)
+    return user.save()
+}
 
 module.exports = {
     registerUser,
@@ -37,5 +41,6 @@ module.exports = {
     editUser,
     deleteUser,
     getUserByEmail,
-    bizUserChange
+    bizUserChange,
+    addToCart
 }

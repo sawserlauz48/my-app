@@ -18,6 +18,9 @@ const registerSchema = Joi.object({
         .required(),
     password: Joi.string()
         .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
+        .message({
+            "string.pattern.base": `"a minimum of 1 lower and upper case letter and one special character of !@#$%^&*-().`,
+        })
         .min(6)
         .max(14)
         .label("Password")

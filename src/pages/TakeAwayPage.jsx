@@ -50,7 +50,7 @@ const TakeAway = () => {
       </div>
       {/* <div
         className="listGrid container grid grid-cols-1   bg-lightmode-accent border dark:border-slate-700
-      border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5"
+      border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5 hover:cursor-pointer"
       >
         {Items.map((item) => (
           <Listcomponent

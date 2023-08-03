@@ -1,20 +1,26 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const CheckboxComponent = ({ title, id, label, ifChecked }) => {
+const CheckboxComponent = ({
+  title,
+  id,
+  label,
+  ifChecked,
+  isCheckedState,
+  onChange,
+}) => {
   const [isChecked, setCheckboxState] = useState(true);
 
-  useEffect(() => {
-    setCheckboxState(ifChecked);
-  }, []);
-
+  // const onChange = (event) => {
+  //   setCheckboxState(event.target.checked);
+  // };
   const handleChange = (event) => {
-    setCheckboxState(event.target.checked);
+    onChange(event);
   };
   return (
     <div className="flex items-center mr-4 mt-4">
       <input
-        checked={isChecked}
+        checked={isCheckedState}
         type="checkbox"
         id={title}
         onChange={handleChange}

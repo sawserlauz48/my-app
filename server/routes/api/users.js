@@ -10,7 +10,8 @@ const authMw = require("../../middleware/authMiddleware");
 const permissionsMiddleware = require("../../middleware/permissionsMiddleware");
 const chalk = require("chalk");
 const customError = require("../../utils/CustomError")
-
+const itemServiceModel = require("../../model/itemsService/itemsService");
+const itemsValidationService = require("../../validation/itemsValidationService");
 
 
 
@@ -73,27 +74,27 @@ router.get("/:id", authMw, permissionsMiddleware(true, true, true), async (req, 
 
         }
     })
-    .patch("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
-        try {
-            await userValidationService.createUserIdValidation(req.params.id);
-            const user = await usersServiceModel.getUserById(req.params.id)
-            const userId = { _id: (req.params.id) };
-            if (user.isBusiness === true) {
-                const setIsBusiness = { $set: { isBusiness: false } };
-                await usersServiceModel.bizUserChange(userId, setIsBusiness);
-                console.log(chalk.greenBright("The user changed to normal account"));
-                return res.status(200).json({ msg: "The user changed to normal account", user });
-            } if (user.isBusiness === false) {
-                const setIsBusiness = { $set: { isBusiness: true } };
-                await usersServiceModel.bizUserChange(userId, setIsBusiness);
-                console.log(chalk.greenBright("The user changed to business account"));
-                return res.status(200).json({ msg: "The user changed to business account", user });
-            }
-        } catch (error) {
-            console.log(chalk.redBright("Could'nt edit the user", error));
-            res.status(400).json({ msg: "Could'nt edit the user", error })
-        }
-    })
+    // .patch("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
+    //     try {
+    //         await userValidationService.createUserIdValidation(req.params.id);
+    //         const user = await usersServiceModel.getUserById(req.params.id)
+    //         const userId = { _id: (req.params.id) };
+    //         if (user.isBusiness === true) {
+    //             const setIsBusiness = { $set: { isBusiness: false } };
+    //             await usersServiceModel.bizUserChange(userId, setIsBusiness);
+    //             console.log(chalk.greenBright("The user changed to normal account"));
+    //             return res.status(200).json({ msg: "The user changed to normal account", user });
+    //         } if (user.isBusiness === false) {
+    //             const setIsBusiness = { $set: { isBusiness: true } };
+    //             await usersServiceModel.bizUserChange(userId, setIsBusiness);
+    //             console.log(chalk.greenBright("The user changed to business account"));
+    //             return res.status(200).json({ msg: "The user changed to business account", user });
+    //         }
+    //     } catch (error) {
+    //         console.log(chalk.redBright("Could'nt edit the user", error));
+    //         res.status(400).json({ msg: "Could'nt edit the user", error })
+    //     }
+    // })
     .delete("/:id", authMw, permissionsMiddleware(false, true, true), async (req, res) => {
         try {
             await userValidationService.createUserIdValidation(req.params.id);
@@ -124,7 +125,7 @@ router.post("/login", async (req, res) => {
         const token = await tokenService.generateToken({
             _id: userData._id,
             isAdmin: userData.isAdmin,
-            isBusiness: userData.isBusiness,
+            isUser: userData.isUser,
         })
         res.status(200).json({ token });
     } catch (error) {
@@ -132,4 +133,39 @@ router.post("/login", async (req, res) => {
     }
 })
 
+router.patch("/cart", authMw, async (req, res) => {
+    try {
+        // not finished
+        await userValidationService.createUserIdValidation(req.userData._id);
+        const user = await usersServiceModel.getUserById(req.userData._id)
+        await itemsValidationService.createItemIdValidation(req.body.item);
+        await itemServiceModel.getItemsById(req.body.item); // item to buy
+        user.cart.push(
+            {
+                item: req.body.item,
+                ingredients: req.body.ingredients,
+                specialInstruction: req.body.specialInstruction
+            }
+        );
+        await usersServiceModel.addToCart(user);
+
+        console.log(user.cart);
+        console.log(chalk.greenBright("item has been added to the cart"));
+        res.status(200).json({ msg: "item has been added to the cart" })
+    } catch (err) {
+        console.log(chalk.redBright(err.message));
+        return res.status(500).send(err.message);
+    }
+})
+router.get("/cart/get-my-cart", authMw, async (req, res) => {
+    try {
+        await userValidationService.createUserIdValidation(req.userData._id);
+        const user = await usersServiceModel.getUserById(req.userData._id)
+        console.log(user.cart);
+        res.status(200).json({ msg: "item has been added to the cart", cart: user.cart })
+    } catch (err) {
+        console.log(chalk.redBright(err.message));
+        return res.status(500).send(err.message);
+    }
+})
 module.exports = router;

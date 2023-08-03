@@ -45,6 +45,11 @@ const bizUserChange = async (filter, update) => {
         return usersServiceMongo.bizUserChange(filter, update)
     }
 }
+const addToCart = async (itemToSave) => {
+    if (dbOption === "mongo") {
+        return usersServiceMongo.addToCart(itemToSave);
+    }
+}
 
 module.exports = {
     registerUser,
@@ -54,5 +59,6 @@ module.exports = {
     editUser,
     deleteUser,
     getUserByEmail,
-    bizUserChange
+    bizUserChange,
+    addToCart
 }

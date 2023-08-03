@@ -13,6 +13,7 @@
       "street": "employed street",
       "houseNumber": 1
     },
+    "cart": [],
     "isAdmin": false,
     "isEmployed": true
   },
@@ -30,6 +31,7 @@
       "street": "user street",
       "houseNumber": 1
     },
+    "cart": [],
     "isAdmin": false,
     "isEmployed": false
   },
@@ -47,6 +49,7 @@
       "street": "admin street",
       "houseNumber": 1
     },
+    "cart": [],
     "isAdmin": true,
     "isEmployed": true
   }

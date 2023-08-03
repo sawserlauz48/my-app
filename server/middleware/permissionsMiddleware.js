@@ -3,7 +3,7 @@ const itemService = require("../model/itemsService/itemsService");
 const itemsValidationService = require("../validation/itemsValidationService");
 const chalk = require("chalk");
 
-const permissionsMiddleware = (isEmployed, isAdmin, isBizOwner) => {
+const permissionsMiddleware = (isEmployed, isAdmin, isUser) => {
     return (req, res, next) => {
         if (!req.userData) {
             console.log(chalk.redBright("userData was not provided"));
@@ -15,8 +15,8 @@ const permissionsMiddleware = (isEmployed, isAdmin, isBizOwner) => {
         if (isAdmin === req.userData.isAdmin && isAdmin === true) {
             return next()
         }
-        if (isBizOwner === req.userData.isEmployed && isBizOwner === true) {
-            return CheckIfBizOwner(req.userData._id, req.params.id, res, next);
+        if (isUser === req.userData.isUser && isUser === true) {
+            return next()
         }
         console.log(chalk.redBright("The user is not allowed to edit the item"));
         res.status(401).json({ msg: "You are not allowed to edit/create this item" });

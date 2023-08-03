@@ -82,20 +82,12 @@ router.get("/:id", async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
         const itemToLike = await itemServiceModel.getItemsById(req.params.id);
-        const itemLikes = itemToLike.likes.find((id) => id === req.userData._id)
-        if (!itemLikes) {
-            itemToLike.likes.push(req.userData._id);
-            await itemServiceModel.likeItem(itemToLike);
-            console.log(chalk.greenBright("The item has been liked"));
-            return res.json({ msg: "The item has been liked", itemToLike });
-        }
-        const itemFilterd = itemToLike.likes.filter((id) => id !== req.userData._id);
-        itemToLike.likes = itemFilterd;
+        itemToLike.likes.push(req.userData._id, req.body);
         await itemServiceModel.likeItem(itemToLike);
-        console.log(chalk.greenBright("The item has been unliked"));
-        return res.json({ msg: "The item has been unliked", itemToLike });
+        console.log(chalk.greenBright("The item has been add to the cart"));
+        return res.json({ msg: "The item has been added to the cart", itemToLike });
     } catch (err) {
-        console.log(chalk.redBright("Could not edit like:", err.message));
+        console.log(chalk.redBright("Could not add the item to the cart", err.message));
         return res.status(500).send(err.message);
     }
 })

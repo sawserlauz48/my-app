@@ -1,6 +1,6 @@
 const ButtonComponent = ({ label, onclick, isDisable }) => {
-  const handleSignInBtn = (event) => {
-    onclick(event);
+  const handleSignInBtn = () => {
+    onclick();
   };
   return (
     <button

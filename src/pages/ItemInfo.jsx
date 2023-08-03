@@ -1,9 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Await, useNavigate, useParams } from "react-router-dom";
 import CheckboxComponent from "../components/CheckboxComponent";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ButtonComponent from "../components/ButtonComponent";
 import { close } from "../images/svgs";
+import QuantityComponent from "../components/QuantityComponent";
+import { toast } from "react-toastify";
+import InputComponent from "../components/InputComponent";
 
 const ItemInfo = () => {
   const { id } = useParams();
@@ -12,6 +15,8 @@ const ItemInfo = () => {
     image: { url: "", alt: "" },
     ingredients: [],
   });
+  const [inputState, setInputState] = useState("");
+  const [isCheckedState, setCheckboxState] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -36,6 +41,30 @@ const ItemInfo = () => {
 
   const handleDivClick = (event) => {
     event.stopPropagation();
+  };
+  const handleBuyClick = async () => {
+    try {
+      await axios.patch(`/users/cart/`, {
+        item: id,
+        ingredients: "",
+        specialInstruction: inputState,
+      });
+      toast.success("item has been added to the cart");
+    } catch (error) {
+      toast.error("couldn't add the item to the cart");
+      console.log(error);
+    }
+    navagite("/takeaway");
+  };
+  const handleInputChange = (event) => {
+    let newInputState = JSON.parse(JSON.stringify(inputState));
+    newInputState = event.target.value;
+    setInputState(newInputState);
+  };
+  const handleCheckboxChange = (event) => {
+    let newIsCheckedState = JSON.parse(JSON.stringify(isCheckedState));
+    newIsCheckedState[event.target.id] = event.target.checked;
+    setCheckboxState(newIsCheckedState);
   };
 
   return (
@@ -62,9 +91,13 @@ const ItemInfo = () => {
               className="w-[280px]"
             />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col">
             <div className=" font-bold text-4xl">{state.title}</div>
             <div className="text-md">{state.description}</div>
+            <div className=" w-32">
+              Quantity:
+              <QuantityComponent bg={"bg"}></QuantityComponent>
+            </div>
           </div>
         </div>
         <div className=" relative inline-flex items-center justify-center w-full py-2 mt-10 ">
@@ -76,7 +109,14 @@ const ItemInfo = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 px-[48px] py-2 mt-3 ">
           {state.ingredients.map((item) => (
             <div key={item}>
-              <CheckboxComponent title={item} label={item}></CheckboxComponent>
+              <CheckboxComponent
+                onChange={handleCheckboxChange}
+                isCheckedState={isCheckedState}
+                // ifChecked={true}
+                title={item}
+                label={item}
+                id={item}
+              ></CheckboxComponent>
             </div>
           ))}
         </div>
@@ -91,8 +131,10 @@ const ItemInfo = () => {
             <textarea
               className="block py-2.5 px-0  w-full  text-sm text-lightmode-text bg-transparent border-0 border-b-2 border-lightmode-pBtn appearance-none dark:text-darkmode-text dark:border-blue-900 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-lightmode-pBtn peer"
               placeholder={" "}
-              name=""
+              name="text"
               id="text"
+              value={inputState}
+              onChange={handleInputChange}
             ></textarea>
             <label
               htmlFor={"text"}
@@ -102,7 +144,10 @@ const ItemInfo = () => {
             </label>
           </div>
           <div className="h-[10px] mt-2 sm:ml-auto w-full sm:w-1/4">
-            <ButtonComponent label={"Add dish"}></ButtonComponent>
+            <ButtonComponent
+              label={"Add dish " + "( " + state.price + " ₪ )"}
+              onclick={handleBuyClick}
+            ></ButtonComponent>
           </div>
         </div>
       </div>

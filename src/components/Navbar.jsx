@@ -32,6 +32,7 @@ const Navbar = () => {
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
   );
   const isLoggedIn = useSelector((bigPie) => bigPie.authSlice.isLoggedIn);
+  // console.log(payload, "payload");
 
   const changeTheme = () => {
     if (isDarkTheme === "light") {
@@ -44,7 +45,6 @@ const Navbar = () => {
   const logoutClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
-    // navigate(ROUTES.HOME);
   };
 
   return (

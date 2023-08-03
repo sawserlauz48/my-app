@@ -8,7 +8,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProfilePage from "../pages/ProfilePage";
 import ItemInfo from "../pages/ItemInfo";
-import LogoutPage from "../pages/LogoutPage";
+import Checkout from "../pages/Checkout";
 
 const Router = () => {
   return (
@@ -26,6 +26,7 @@ const Router = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route path={ROUTES.REGISTER} element={<RegisterPage />}></Route>
       <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
+      <Route path={ROUTES.CHECKOUT} element={<Checkout />}></Route>
     </Routes>
   );
 };

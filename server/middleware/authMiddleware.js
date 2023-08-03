@@ -21,7 +21,7 @@ const authMiddleware = async (req, res, next) => {
         if (error instanceof CustomError) {
             errToSend = error;
         } else {
-            errToSend = new CustomError("invalid token")
+            errToSend = new CustomError("Invalid token")
         }
         res.status(401).json(errToSend)
         console.log(chalk.redBright(errToSend))

@@ -6,6 +6,7 @@ const ROUTES = {
     LOGIN: "/login",
     PROFILE: "/profile",
     TAKEAWAY: "/takeaway",
+    CHECKOUT: "/checkout",
     ORDERTABLE: "/ordertable",
     CARDINFO: "/cardinfo",
 };

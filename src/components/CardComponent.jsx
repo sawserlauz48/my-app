@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import QuantityComponent from "./QuantityComponent";
 
 const CardComponent = ({
   name,
@@ -30,11 +31,19 @@ const CardComponent = ({
         <div className=" font-normal text-slate-500 dark:text-slate-500">
           {description}
         </div>
-        <div
-          className="mt-auto self-end font-normal text-slate-900 dark:text-slate-300
-        "
-        >
-          {price}₪
+        <div className="flex mt-auto">
+          <div
+            className=" self-start font-normal text-slate-900 dark:text-slate-300
+          "
+          >
+            {/* <QuantityComponent bg={"accent"}></QuantityComponent> */}
+          </div>
+          <div
+            className="ml-auto self-end font-normal text-slate-900 dark:text-slate-300
+          "
+          >
+            {price}₪
+          </div>
         </div>
       </div>
     </div>
