@@ -54,7 +54,7 @@ const RegisterPage = () => {
   });
   const [inputsErrorsState, setInputsErrorsState] = useState();
   const navigate = useNavigate();
-
+  console.log(inputState);
   const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[event.target.id] = event.target.value;

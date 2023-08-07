@@ -6,7 +6,6 @@ import ButtonComponent from "../components/ButtonComponent";
 import { close } from "../images/svgs";
 import QuantityComponent from "../components/QuantityComponent";
 import { toast } from "react-toastify";
-import InputComponent from "../components/InputComponent";
 
 const ItemInfo = () => {
   const { id } = useParams();
@@ -16,7 +15,15 @@ const ItemInfo = () => {
     ingredients: [],
   });
   const [inputState, setInputState] = useState("");
-  const [isCheckedState, setCheckboxState] = useState(true);
+  const [checkBoxState, setCheckBoxState] = useState("");
+
+  useEffect(() => {
+    const ing = state.ingredients.reduce((acc, item) => {
+      acc[item] = true;
+      return acc;
+    }, {});
+    setCheckBoxState(ing);
+  }, [state]);
 
   useEffect(() => {
     (async () => {
@@ -46,7 +53,7 @@ const ItemInfo = () => {
     try {
       await axios.patch(`/users/cart/`, {
         item: id,
-        ingredients: "",
+        ingredients: checkBoxState,
         specialInstruction: inputState,
       });
       toast.success("item has been added to the cart");
@@ -61,10 +68,10 @@ const ItemInfo = () => {
     newInputState = event.target.value;
     setInputState(newInputState);
   };
-  const handleCheckboxChange = (event) => {
-    let newIsCheckedState = JSON.parse(JSON.stringify(isCheckedState));
-    newIsCheckedState[event.target.id] = event.target.checked;
-    setCheckboxState(newIsCheckedState);
+  const handleClick = (event) => {
+    let newCheckBoxState = JSON.parse(JSON.stringify(checkBoxState));
+    newCheckBoxState[event.target.id] = event.target.checked;
+    setCheckBoxState(newCheckBoxState);
   };
 
   return (
@@ -98,6 +105,7 @@ const ItemInfo = () => {
               Quantity:
               <QuantityComponent bg={"bg"}></QuantityComponent>
             </div>
+            <button onClick={onclick}>click here</button>
           </div>
         </div>
         <div className=" relative inline-flex items-center justify-center w-full py-2 mt-10 ">
@@ -107,18 +115,17 @@ const ItemInfo = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 px-[48px] py-2 mt-3 ">
-          {state.ingredients.map((item) => (
-            <div key={item}>
-              <CheckboxComponent
-                onChange={handleCheckboxChange}
-                isCheckedState={isCheckedState}
-                // ifChecked={true}
-                title={item}
-                label={item}
-                id={item}
-              ></CheckboxComponent>
-            </div>
-          ))}
+          {state &&
+            state.ingredients.map((item) => (
+              <div key={item}>
+                <CheckboxComponent
+                  title={item}
+                  label={item}
+                  state={checkBoxState}
+                  onClick={handleClick}
+                ></CheckboxComponent>
+              </div>
+            ))}
         </div>
         <div className=" relative inline-flex items-center justify-center w-full mt-10 ">
           <hr className=" w-3/4 h-[2px] bg-slate-300 border-0 dark:bg-slate-700 " />
@@ -146,7 +153,7 @@ const ItemInfo = () => {
           <div className="h-[10px] mt-2 sm:ml-auto w-full sm:w-1/4">
             <ButtonComponent
               label={"Add dish " + "( " + state.price + " ₪ )"}
-              onclick={handleBuyClick}
+              onClick={handleBuyClick}
             ></ButtonComponent>
           </div>
         </div>
