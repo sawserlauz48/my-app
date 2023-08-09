@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
-import QuantityComponent from "./QuantityComponent";
 import ButtonComponent from "./ButtonComponent";
+import { buyIcon } from "../images/svgs";
 
 const CardComponent = ({
+  title,
   name,
   price,
   description,
   image,
   id,
-  onOpen,
   onItemClick,
+  onPlusBtnClick,
+  ing,
 }) => {
-  const openInfo = () => {
-    onOpen(id);
-  };
   const handleItemClick = () => {
     onItemClick(id);
+  };
+  const onBtnClick = () => {
+    onPlusBtnClick(id, ing, image, title);
+  };
+  const handleDivClick = (event) => {
+    event.stopPropagation();
   };
   return (
     <div
@@ -33,11 +38,15 @@ const CardComponent = ({
           {description}
         </div>
         <div className=" flex items-stretch mt-auto">
-          <ButtonComponent
-            className={
-              " self-end mt-auto mr-auto h-[40px] w-[40px] items-center"
-            }
-          />
+          <div onClick={handleDivClick}>
+            <ButtonComponent
+              icon={buyIcon}
+              className={
+                "h-[40px] w-[40px] flex justify-center items-center rounded-md mt-2"
+              }
+              onClick={onBtnClick}
+            />
+          </div>
           <div
             className="ml-auto self-end font-normal text-slate-900 dark:text-slate-300
           "

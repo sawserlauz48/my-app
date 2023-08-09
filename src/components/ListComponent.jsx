@@ -1,19 +1,26 @@
 import PropTypes from "prop-types";
+import ButtonComponent from "./ButtonComponent";
+import { buyIcon } from "../images/svgs";
 
 const Listcomponent = ({
+  title,
   name,
   price,
   description,
   image,
   id,
-  onOpen,
   onItemClick,
+  onPlusBtnClick,
+  ing,
 }) => {
-  const openInfo = () => {
-    onOpen(id);
+  const onBtnClick = () => {
+    onPlusBtnClick(id, ing, image, title);
   };
   const handleItemClick = () => {
     onItemClick(id);
+  };
+  const handleDivClick = (event) => {
+    event.stopPropagation();
   };
   return (
     <div
@@ -34,6 +41,17 @@ const Listcomponent = ({
             </td>
             <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
               {price}₪
+            </td>
+            <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
+              <div onClick={handleDivClick}>
+                <ButtonComponent
+                  icon={buyIcon}
+                  className={
+                    "h-[40px] w-[40px] flex justify-center items-center rounded-md mt-2"
+                  }
+                  onClick={onBtnClick}
+                />
+              </div>
             </td>
           </tr>
         </tbody>

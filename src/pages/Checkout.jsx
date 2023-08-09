@@ -1,20 +1,35 @@
-import React from "react";
-import Listcomponent from "../components/ListComponent";
-
+import React, { useEffect, useState } from "react";
+import CartListComponent from "../components/CartListComponent";
+import axios from "axios";
 const Checkout = () => {
+  const [Items, setAllItems] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("users/cart/get-my-cart")
+      .then(({ data }) => {
+        console.log(data.myCart);
+        setAllItems(data.myCart);
+      })
+      .catch((err) => {
+        console.log(err.response, "err");
+      });
+  }, []);
   return (
-    <div className="p-[48px] bg-lightmode-accent dark:bg-darkmode-accent w-3/4 h-[550px]">
-      <div className=" order w-full h-full border-[1px] rounded-lg flex flex-col items-center">
-        {/* <Listcomponent
-        // key={item.title}
-        // id={item._id}
-        // name={item.title}
-        // price={item.price}
-        // description={item.description}
-        // image={item.image.url}
-        // onItemClick={handleItemClick}
-        ></Listcomponent> */}
-      </div>
+    <div
+      className="listGrid container grid grid-cols-1   bg-lightmode-accent border dark:border-slate-700
+      border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5 hover:cursor-pointer"
+    >
+      {Items.map((item) => (
+        <div className="">
+          <CartListComponent
+            image={item.image}
+            title={item.title}
+            price={item.price}
+            instractions={item.specialInstruction}
+          />
+        </div>
+      ))}
     </div>
   );
 };

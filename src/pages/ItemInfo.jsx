@@ -55,6 +55,8 @@ const ItemInfo = () => {
         item: id,
         ingredients: checkBoxState,
         specialInstruction: inputState,
+        title: state.title,
+        image: state.image.url,
       });
       toast.success("item has been added to the cart");
     } catch (error) {

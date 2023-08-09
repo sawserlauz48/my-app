@@ -20,7 +20,10 @@ const HomePage = () => {
             reservation in another date
           </p>
           <div className=" absolute bottom-1 right-5 w-32">
-            <ButtonComponent label={"order here"}></ButtonComponent>
+            <ButtonComponent
+              className={"w-full px-5 py-2.5 mr-2 mb-2"}
+              label={"order here"}
+            ></ButtonComponent>
           </div>
         </div>
         <div className="relative h-52 p-5 flex flex-col bg-lightmode-accent dark:bg-darkmode-accent border rounded-xl border-slate-50 dark:border-slate-700">
@@ -29,7 +32,10 @@ const HomePage = () => {
             You can make a Take Away order and we will bring it to you
           </p>
           <div className="absolute bottom-1 right-5 w-32">
-            <ButtonComponent label={"order here"}></ButtonComponent>
+            <ButtonComponent
+              className={"w-full px-5 py-2.5 mr-2 mb-2"}
+              label={"order here"}
+            ></ButtonComponent>
           </div>
         </div>
       </div>

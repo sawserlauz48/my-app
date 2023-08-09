@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 import CardComponent from "../components/CardComponent";
 import { Outlet, useNavigate } from "react-router-dom";
 import { gridIcon, listIcon } from "../images/svgs";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { itemActions } from "../store/itmes";
 
 const TakeAway = () => {
   const [Items, setAllItems] = useState([]);
+  const [display, setDisplay] = useState("grid");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -18,52 +23,97 @@ const TakeAway = () => {
         console.log(err.response, "err");
       });
   }, []);
-
   const handleItemClick = (id) => {
     navigate(`/takeaway/${id}`);
+  };
+  const gridIconBtn = () => {
+    setDisplay("grid");
+  };
+  const listIconBtn = () => {
+    setDisplay("list");
+  };
+  const handlePlusBtnClick = async (id, ing, image, title) => {
+    let ingredients = ing.reduce((acc, item) => {
+      acc[item] = true;
+      return acc;
+    }, {});
+    try {
+      await axios.patch(`/users/cart/`, {
+        item: id,
+        title,
+        image: image,
+        ingredients: ingredients,
+        specialInstruction: "",
+      });
+      dispatch(itemActions.addItemsLength());
+      toast.success("item has been added to the cart");
+    } catch (error) {
+      toast.error("couldn't add the item to the cart");
+      console.log(error);
+    }
   };
   return (
     <div className="relative">
       <div>
-        <span className="  bg-lightmode-bg absolute top-[10px] right-[10px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200">
+        <span
+          onClick={gridIconBtn}
+          className="  bg-lightmode-bg absolute top-[10px] right-[10px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200"
+        >
           {gridIcon}
         </span>
-        <span className=" bg-lightmode-bg absolute top-[10px] right-[50px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200">
+        <span
+          onClick={listIconBtn}
+          className=" bg-lightmode-bg absolute top-[10px] right-[50px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200"
+        >
           {listIcon}
         </span>
       </div>
-      <div
-        className="listGrid grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2   bg-lightmode-accent border dark:border-slate-700
+      {display === "grid" ? (
+        <div
+          className="listGrid grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2   bg-lightmode-accent border dark:border-slate-700
       border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5"
-      >
-        {Items.map((item) => (
-          <CardComponent
-            key={item.title}
-            id={item._id}
-            name={item.title}
-            price={item.price}
-            description={item.description}
-            image={item.image.url}
-            onItemClick={handleItemClick}
-          ></CardComponent>
-        ))}
-      </div>
-      {/* <div
-        className="listGrid container grid grid-cols-1   bg-lightmode-accent border dark:border-slate-700
+        >
+          {Items.map((item) => (
+            <CardComponent
+              title={item.title}
+              key={item.title}
+              id={item._id}
+              name={item.title}
+              price={item.price}
+              description={item.description}
+              image={item.image.url}
+              ing={item.ingredients}
+              onItemClick={handleItemClick}
+              onPlusBtnClick={handlePlusBtnClick}
+            ></CardComponent>
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
+      {display === "list" ? (
+        <div
+          className="listGrid container grid grid-cols-1   bg-lightmode-accent border dark:border-slate-700
       border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5 hover:cursor-pointer"
-      >
-        {Items.map((item) => (
-          <Listcomponent
-            key={item.title}
-            id={item._id}
-            name={item.title}
-            price={item.price}
-            description={item.description}
-            image={item.image.url}
-            onItemClick={handleItemClick}
-          ></Listcomponent>
-        ))}
-      </div> */}
+        >
+          {Items.map((item) => (
+            <Listcomponent
+              title={item.title}
+              key={item.title}
+              id={item._id}
+              name={item.title}
+              price={item.price}
+              description={item.description}
+              image={item.image.url}
+              ing={item.ingredients}
+              onItemClick={handleItemClick}
+              onPlusBtnClick={handlePlusBtnClick}
+            ></Listcomponent>
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
       <Outlet />
     </div>
   );

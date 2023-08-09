@@ -144,7 +144,9 @@ router.patch("/cart", authMw, async (req, res) => {
             {
                 item: req.body.item,
                 ingredients: req.body.ingredients,
-                specialInstruction: req.body.specialInstruction
+                specialInstruction: req.body.specialInstruction,
+                title: req.body.title,
+                image: req.body.image,
             }
         );
         await usersServiceModel.addToCart(user);
@@ -161,8 +163,8 @@ router.get("/cart/get-my-cart", authMw, async (req, res) => {
     try {
         await userValidationService.createUserIdValidation(req.userData._id);
         const user = await usersServiceModel.getUserById(req.userData._id)
-        console.log(user.cart);
-        res.status(200).json({ msg: "item has been added to the cart", cart: user.cart })
+        const myCart = user.cart
+        res.status(200).json({ myCart })
     } catch (err) {
         console.log(chalk.redBright(err.message));
         return res.status(500).send(err.message);
