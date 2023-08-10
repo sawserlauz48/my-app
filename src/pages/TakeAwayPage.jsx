@@ -32,7 +32,7 @@ const TakeAway = () => {
   const listIconBtn = () => {
     setDisplay("list");
   };
-  const handlePlusBtnClick = async (id, ing, image, title) => {
+  const handlePlusBtnClick = async (id, ing, image, title, price) => {
     let ingredients = ing.reduce((acc, item) => {
       acc[item] = true;
       return acc;
@@ -44,8 +44,16 @@ const TakeAway = () => {
         image: image,
         ingredients: ingredients,
         specialInstruction: "",
+        price: price,
       });
-      dispatch(itemActions.addItemsLength());
+      await axios
+        .get("users/cart/get-my-cart")
+        .then(({ data }) => {
+          dispatch(itemActions.addItemsLength(data.myCart.length));
+        })
+        .catch((err) => {
+          console.log(err.response, "err");
+        });
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");

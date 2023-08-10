@@ -147,6 +147,7 @@ router.patch("/cart", authMw, async (req, res) => {
                 specialInstruction: req.body.specialInstruction,
                 title: req.body.title,
                 image: req.body.image,
+                price: req.body.price
             }
         );
         await usersServiceModel.addToCart(user);

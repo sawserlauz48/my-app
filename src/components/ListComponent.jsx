@@ -14,7 +14,7 @@ const Listcomponent = ({
   ing,
 }) => {
   const onBtnClick = () => {
-    onPlusBtnClick(id, ing, image, title);
+    onPlusBtnClick(id, ing, image, title, price);
   };
   const handleItemClick = () => {
     onItemClick(id);

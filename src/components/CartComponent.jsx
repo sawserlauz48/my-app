@@ -3,18 +3,18 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { itemActions } from "../store/itmes";
 
 const CartComponent = () => {
-  const [Items, setAllItems] = useState("");
-
   const navigate = useNavigate();
   const itemsInCart = useSelector((bigpie) => bigpie.itemSlice.items);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("users/cart/get-my-cart")
       .then(({ data }) => {
-        setAllItems(data.myCart.length);
+        dispatch(itemActions.addItemsLength(data.myCart.length));
       })
       .catch((err) => {
         console.log(err.response, "err");

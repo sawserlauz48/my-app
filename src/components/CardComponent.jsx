@@ -17,7 +17,7 @@ const CardComponent = ({
     onItemClick(id);
   };
   const onBtnClick = () => {
-    onPlusBtnClick(id, ing, image, title);
+    onPlusBtnClick(id, ing, image, title, price);
   };
   const handleDivClick = (event) => {
     event.stopPropagation();

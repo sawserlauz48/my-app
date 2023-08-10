@@ -1,4 +1,4 @@
-import { Await, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CheckboxComponent from "../components/CheckboxComponent";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,9 +6,12 @@ import ButtonComponent from "../components/ButtonComponent";
 import { close } from "../images/svgs";
 import QuantityComponent from "../components/QuantityComponent";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { itemActions } from "../store/itmes";
 
 const ItemInfo = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const navagite = useNavigate();
   const [state, setState] = useState({
     image: { url: "", alt: "" },
@@ -57,7 +60,16 @@ const ItemInfo = () => {
         specialInstruction: inputState,
         title: state.title,
         image: state.image.url,
+        price: state.price,
       });
+      await axios
+        .get("users/cart/get-my-cart")
+        .then(({ data }) => {
+          dispatch(itemActions.addItemsLength(data.myCart.length));
+        })
+        .catch((err) => {
+          console.log(err.response, "err");
+        });
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");
@@ -107,7 +119,6 @@ const ItemInfo = () => {
               Quantity:
               <QuantityComponent bg={"bg"}></QuantityComponent>
             </div>
-            <button onClick={onclick}>click here</button>
           </div>
         </div>
         <div className=" relative inline-flex items-center justify-center w-full py-2 mt-10 ">
@@ -155,6 +166,7 @@ const ItemInfo = () => {
           <div className="h-[10px] mt-2 sm:ml-auto w-full sm:w-1/4">
             <ButtonComponent
               label={"Add dish " + "( " + state.price + " ₪ )"}
+              className={"w-full px-5 py-2.5 mr-2 mb-2"}
               onClick={handleBuyClick}
             ></ButtonComponent>
           </div>

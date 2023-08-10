@@ -8,8 +8,8 @@ const itemSlice = createSlice({
     name: "items",
     initialState,
     reducers: {
-        addItemsLength(state) {
-            state.items++
+        addItemsLength(state, action) {
+            state.items = action.payload
         },
         subtractItemsLength(state) {
             state.items--

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CartListComponent from "../components/CartListComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { itemActions } from "../store/itmes";
+
 const Checkout = () => {
   const [Items, setAllItems] = useState([]);
 
@@ -15,6 +18,11 @@ const Checkout = () => {
         console.log(err.response, "err");
       });
   }, []);
+  const handleCloseBtn = () => {
+    // dispatch(itemActions.subtractItemsLength());
+  };
+  const HandleEditBtn = () => {};
+
   return (
     <div
       className="listGrid container grid grid-cols-1   bg-lightmode-accent border dark:border-slate-700
@@ -27,6 +35,8 @@ const Checkout = () => {
             title={item.title}
             price={item.price}
             instractions={item.specialInstruction}
+            onClickCloseBtn={handleCloseBtn}
+            onClickEditBtn={HandleEditBtn}
           />
         </div>
       ))}
