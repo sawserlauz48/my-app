@@ -53,11 +53,14 @@ const ItemInfo = () => {
     event.stopPropagation();
   };
   const handleBuyClick = async () => {
+    const unChekedIngredients = Object.keys(checkBoxState)
+      .filter((key) => !checkBoxState[key])
+      .map((key) => `without ${key} `);
     try {
       await axios.patch(`/users/cart/`, {
         item: id,
         ingredients: checkBoxState,
-        specialInstruction: inputState,
+        specialInstruction: unChekedIngredients + " " + inputState,
         title: state.title,
         image: state.image.url,
         price: state.price,

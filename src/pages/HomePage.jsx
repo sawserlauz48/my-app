@@ -1,8 +1,12 @@
 import imagePlace from "../images/DSC_2477.JPG";
 import ButtonComponent from "../components/ButtonComponent";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex flex-col">
       <div className="">

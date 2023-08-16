@@ -1,24 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { editIcon, close } from "../images/svgs";
+import CheckboxComponent from "./CheckboxComponent";
+import ButtonComponent from "./ButtonComponent";
+import axios from "axios";
 
 const CartListComponent = ({
   image,
   title,
   price,
   instractions,
+  ingredients,
   onClickEditBtn,
   onClickCloseBtn,
+  onClickSaveBtn,
+  id,
 }) => {
-  const handleCloseBtn = () => {
-    onClickCloseBtn();
+  const [inputTextState, setInputTextState] = useState("");
+  const [isstate, setState] = useState(false);
+  const [isIngredients, setIngredients] = useState([]);
+  const [checkBoxState, setCheckBoxState] = useState("");
+  useEffect(() => {
+    const ingredientsArray = Object.entries(ingredients).map(
+      ([key, value]) => ({ title: key, isChecked: value })
+    );
+    setIngredients(ingredientsArray);
+    setCheckBoxState(ingredients);
+  }, []);
+  const handleDeleteBtn = () => {
+    onClickCloseBtn(id);
   };
   const handleEditBtn = () => {
+    setState(!isstate);
     onClickEditBtn();
   };
+  const handleClick = (event) => {
+    let newCheckBoxState = JSON.parse(JSON.stringify(checkBoxState));
+    newCheckBoxState[event.target.id] = event.target.checked;
+    setCheckBoxState(newCheckBoxState);
+  };
+  const handleInputChange = (event) => {
+    let newInputState = JSON.parse(JSON.stringify(inputTextState));
+    newInputState = event.target.value;
+    setInputTextState(newInputState);
+  };
+  const handleSaveBtn = async () => {
+    onClickSaveBtn(id, price, image, title, checkBoxState, inputTextState);
+    setState(!isstate);
+  };
+  const handleCancleBtn = () => {
+    setState(!isstate);
+  };
   return (
-    <div className="w-full relative ">
+    <div className="w-full relative p-2 ">
       <button
-        onClick={handleCloseBtn}
+        onClick={handleDeleteBtn}
         className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-18px] right-[15px] z-10
       "
       >
@@ -31,22 +67,81 @@ const CartListComponent = ({
       >
         {editIcon}
       </button>
-      <div className=" grid grid-cols-6 overflow-x-auto sm:rounded-lg shadow-lg bg-orange-200 border-lightmode-pBtn hover:bg-orange-20  dark:border-blue-900 dark:bg-blue-950 w-full h-[200px] mb-10 p-5">
-        <div className="col-span-1">
+      <div className=" md:grid md:grid-cols-6 grid-cols-1  overflow-x-auto sm:rounded-lg shadow-lg bg-orange-200 border-lightmode-pBtn hover:bg-orange-20  dark:border-blue-900 dark:bg-blue-950 w-full  mb-1 p-5">
+        <div className="col-span-1 container">
           <img
-            className="w-[160px] h-[160px] self-center rounded"
+            className=" w-[640px] self-center rounded"
             src={image}
             alt={title}
           />
         </div>
-        <div className="flex flex-col col-span-4">
-          <div className="text-2xl font-bold mb-auto">{title}</div>
-          <div className="slef-mb-auto">
-            <div className="font-bold">special instractions:</div>
-            <div>{instractions}</div>
+        <div className="flex flex-col sm:col-span-2 col-span-1 p-2">
+          <div className="text-3xl font-bold mt-2 mb-2">{title}</div>
+          <div className="font-bold text-slate-600">special instractions:</div>
+          <div className="text-slate-600 flex p-1">
+            {!isstate ? (instractions == "" ? "" : instractions) : ""}
+            {isstate ? (
+              <div className="relative z-0 mt-1 w-full sm:w-3/4 ">
+                <textarea
+                  className="block p-2.5 px-2  w-full  text-sm text-lightmode-text border-0 border-b-2 border-lightmode-pBtn appearance-none dark:text-darkmode-text dark:border-blue-900 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-lightmode-pBtn peer"
+                  placeholder={" "}
+                  name="text"
+                  id="text"
+                  value={inputTextState}
+                  onChange={handleInputChange}
+                ></textarea>
+                <label
+                  htmlFor={"text"}
+                  className="flex absolute text-md text-lightmode-text dark:text-darkmode-text duration-300 transform -translate-y-6 scale-75 top-4 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-lightmode-pBtn peer-focus:dark:text-darkmode-pBtn peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Enter instruction here
+                </label>
+              </div>
+            ) : (
+              ""
+            )}
+            <br />
+            <br />
           </div>
         </div>
-        <div className=" col-span-1 self-center ml-auto">{price}</div>
+        <div className="col-span-2">
+          <div className="grid grid-cols-2 mb-3">
+            {isstate
+              ? isIngredients.map((item, index) => (
+                  <CheckboxComponent
+                    label={item.title}
+                    state={checkBoxState}
+                    key={title + Date.now() + index}
+                    title={item.title}
+                    onClick={handleClick}
+                  />
+                ))
+              : ""}
+          </div>
+        </div>
+        <div className="flex flex-col mr-3 text-lg font-bold col-span-1 self-center ml-auto">
+          <div className="ml-10 self-start">{price} ₪</div>
+          {isstate ? (
+            <div className="flex flex-col gap-y-3">
+              <ButtonComponent
+                onClick={handleSaveBtn}
+                label={"SAVE"}
+                className={
+                  " px-5 py-2.5 mr-2 mb-2 absolute bottom-3 right-3 rounded"
+                }
+              />
+              <ButtonComponent
+                label={"CANCLE"}
+                onClick={handleCancleBtn}
+                className={
+                  "px-5 py-2.5 mr-2 mb-2 absolute bottom-3 right-24 rounded"
+                }
+              />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );

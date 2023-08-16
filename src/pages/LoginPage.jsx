@@ -13,6 +13,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+  const [checkBoxState, setCheckBoxState] = useState(false);
+
   const navigate = useNavigate();
   const loggedIn = useLoggedIn();
 
@@ -31,6 +33,9 @@ const LoginPage = () => {
       console.log(err);
       toast.error("e-mail or password incorrect");
     }
+  };
+  const handleClick = (event) => {
+    setCheckBoxState(!checkBoxState);
   };
   return (
     <div className="overflow-auto w-full max-w-sm p-4 bg-lightmode-accent border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -64,15 +69,17 @@ const LoginPage = () => {
           <div className="flex items-start">
             <div className="flex items-center h-5">
               <CheckboxComponent
-                ifChecked={false}
                 title={"rememberMe"}
                 label={"Remember me"}
+                state={checkBoxState}
+                onClick={handleClick}
               />
             </div>
           </div>
         </div>
         <ButtonComponent
-          onclick={handleBtnClick}
+          className={"w-full px-5 py-2.5 mr-2 mb-2"}
+          onClick={handleBtnClick}
           label={"Sign in"}
         ></ButtonComponent>
         <div className="flex text-sm font-medium text-gray-500 dark:text-gray-300">

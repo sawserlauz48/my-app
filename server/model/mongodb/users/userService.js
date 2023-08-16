@@ -1,4 +1,6 @@
 const User = require("./user");
+const { ObjectId } = require("mongoose").Types;
+
 
 const registerUser = (userData) => {
     let user = new User(userData)
@@ -33,6 +35,17 @@ const addToCart = async (itemToAdd) => {
     return user.save()
 }
 
+const updateCart = async (userId, itemToDelete) => {
+    await User.updateOne(
+        { _id: userId },
+        { $pull: { cart: { _id: itemToDelete } } }
+    );
+
+};
+const editCart = async (userId, itemToDelete, payload) => {
+    await User.updateOne({ _id: userId, "cart._id": itemToDelete }, { $set: { "cart.$": payload } })
+};
+
 module.exports = {
     registerUser,
     loginUser,
@@ -42,5 +55,7 @@ module.exports = {
     deleteUser,
     getUserByEmail,
     bizUserChange,
-    addToCart
+    addToCart,
+    updateCart,
+    editCart
 }

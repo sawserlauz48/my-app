@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Image = require("../items/image");
 const Address = require("../users/Address");
 const Name = require("./name");
+const Item = require("./Item")
 const { URL } = require("../items/helpers/mongooseValidation");
 const { object } = require("joi");
 
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema({
     },
     image: Image,
     address: Address,
-    cart: [Object],
+    cart: [Item],
     isAdmin: { type: Boolean, default: false },
     isEmployed: { type: Boolean, default: false },
     isUser: { type: Boolean, default: true },

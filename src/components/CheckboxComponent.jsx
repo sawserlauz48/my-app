@@ -9,7 +9,7 @@ const CheckboxComponent = ({ title, label, onClick, state }) => {
         checked={state[title]}
         type="checkbox"
         id={title}
-        onClick={handleClick}
+        onChange={handleClick}
       />
       <label htmlFor={title}>{label}</label>
     </div>
