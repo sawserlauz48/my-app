@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const registerSchema = Joi.object({
+const profileSchema = Joi.object({
     name: Joi.object().keys({
         firstName: Joi.string().min(2).max(256).required(),
         lastName: Joi.string().min(2).max(256).required(),
@@ -9,8 +9,6 @@ const registerSchema = Joi.object({
         .regex(new RegExp(/0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}/))
         .required(),
     email: Joi.string().regex(new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)).required(),
-    password: Joi.string().regex(new RegExp(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,})/)).min(6).max(16).required(),
     image: Joi.object().keys({
         url: Joi.string()
             .regex(new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/)).allow(""),
@@ -29,9 +27,6 @@ const registerSchema = Joi.object({
 const idSchema = Joi.string().hex().required();
 
 
-const validateIdSchema = (userInput) => { return idSchema.validateAsync(userInput); }
+const validateProfileSchema = (userInput) => { return profileSchema.validateAsync(userInput); }
 
-
-const validateRegisterSchema = (userInput) => { return registerSchema.validateAsync(userInput); }
-
-module.exports = { validateRegisterSchema, validateIdSchema }
+module.exports = { validateProfileSchema }

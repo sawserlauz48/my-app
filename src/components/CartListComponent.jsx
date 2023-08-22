@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { editIcon, close } from "../images/svgs";
 import CheckboxComponent from "./CheckboxComponent";
 import ButtonComponent from "./ButtonComponent";
-import axios from "axios";
 
 const CartListComponent = ({
   image,
@@ -14,6 +13,7 @@ const CartListComponent = ({
   onClickEditBtn,
   onClickCloseBtn,
   onClickSaveBtn,
+  onChange,
   id,
 }) => {
   const [inputTextState, setInputTextState] = useState("");
@@ -67,7 +67,7 @@ const CartListComponent = ({
       >
         {editIcon}
       </button>
-      <div className=" md:grid md:grid-cols-6 grid-cols-1  overflow-x-auto sm:rounded-lg shadow-lg bg-orange-200 border-lightmode-pBtn hover:bg-orange-20  dark:border-blue-900 dark:bg-blue-950 w-full  mb-1 p-5">
+      <div className="  overflow-x-auto rounded-lg shadow-lg bg-orange-200 border-lightmode-pBtn hover:bg-orange-20  dark:border-blue-900 dark:bg-blue-950 w-full  mb-1 p-5">
         <div className="col-span-1 container">
           <img
             className=" w-[640px] self-center rounded"
@@ -75,13 +75,13 @@ const CartListComponent = ({
             alt={title}
           />
         </div>
-        <div className="flex flex-col sm:col-span-2 col-span-1 p-2">
+        <div className="flex flex-col col-span-1 p-2">
           <div className="text-3xl font-bold mt-2 mb-2">{title}</div>
           <div className="font-bold text-slate-600">special instractions:</div>
           <div className="text-slate-600 flex p-1">
             {!isstate ? (instractions == "" ? "" : instractions) : ""}
             {isstate ? (
-              <div className="relative z-0 mt-1 w-full sm:w-3/4 ">
+              <div className="relative z-0 mt-1 w-full ">
                 <textarea
                   className="block p-2.5 px-2  w-full  text-sm text-lightmode-text border-0 border-b-2 border-lightmode-pBtn appearance-none dark:text-darkmode-text dark:border-blue-900 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-lightmode-pBtn peer"
                   placeholder={" "}

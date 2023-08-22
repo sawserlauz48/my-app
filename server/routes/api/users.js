@@ -12,10 +12,8 @@ const chalk = require("chalk");
 const customError = require("../../utils/CustomError")
 const itemServiceModel = require("../../model/itemsService/itemsService");
 const itemsValidationService = require("../../validation/itemsValidationService");
-const _ = require("lodash")
-const { updateCart, editCart } = require("../../model/mongodb/users/userService")
-const mongoose = require("mongoose");
-const { ObjectId } = require("mongoose").Types;
+const { updateCart, editCart, restCart } = require("../../model/mongodb/users/userService")
+
 
 router.post("/", async (req, res) => {
     try {
@@ -25,6 +23,7 @@ router.post("/", async (req, res) => {
             )
         }
         await userValidationService.registerUserValidation(req.body);
+        await userValidationService.registerUserValidation(req.body.password);
         req.body.password = await hashService.generateHash(req.body.password);
         req.body = normalizeUser(req.body);
         let newUser = await usersServiceModel.registerUser(req.body);
@@ -50,8 +49,8 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
-        await userValidationService.createUserIdValidation(req.params.id);
-        const userById = await usersServiceModel.getUserById(req.params.id);
+        await userValidationService.createUserIdValidation(req.userData._id);
+        const userById = await usersServiceModel.getUserById(req.userData._id);
         res.status(200).json({ msg: "Successfully acquired the users", userById });
         console.log(chalk.greenBright("Successfully acquired the users"));
 
@@ -60,17 +59,17 @@ router.get("/:id", authMw, permissionsMiddleware(true, true, true), async (req, 
         console.log(chalk.redBright("Could'nt acquired the users", error));
     }
 })
-    .put("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
+    .put("/:id", authMw, async (req, res) => {
         try {
-            await userValidationService.createUserIdValidation(req.params.id);
-            let userAfterValidation = await usersServiceModel.registerUserValidation(req.body);
+            await userValidationService.createUserIdValidation(req.userData._id);
+            let userAfterValidation = await userValidationService.updateUserValidation(req.body);
             let userAfterNormlize = await normalizeUser(userAfterValidation);
-            const userFromDb = await usersServiceModel.editUser(req.params.id, userAfterNormlize);
+            const userFromDb = await usersServiceModel.editUser(req.userData._id, userAfterNormlize);
             res.status(200).json({ msg: "Successfully edited the user", userFromDb });
             console.log(chalk.greenBright("Successfully edited the user"));
 
         } catch (error) {
-            res.status(400).json(error);
+            res.status(400).json(error.response);
             console.log(chalk.redBright("Could'nt edit the user", error));
 
         }
@@ -173,6 +172,17 @@ router.put("/cartItem/:id", authMw, async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
+router.patch("/cart/reset", authMw, async (req, res) => {
+    try {
+        const userId = await userValidationService.createUserIdValidation(req.userData._id);
+        await restCart(userId)
+        res.status(200).json(userId.cart)
+    } catch (err) {
+        console.log(chalk.redBright(err.message));
+        return res.status(500).send(err.message);
+    }
+})
+
     .put("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
         try {
             await userValidationService.createUserIdValidation(req.params.id);
