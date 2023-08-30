@@ -9,6 +9,7 @@ import RegisterPage from "../pages/RegisterPage";
 import ProfilePage from "../pages/ProfilePage";
 import ItemInfo from "../pages/ItemInfo";
 import Checkout from "../pages/Checkout";
+import AddItem from "../pages/AddItem";
 
 const Router = () => {
   return (
@@ -27,6 +28,7 @@ const Router = () => {
       <Route path={ROUTES.REGISTER} element={<RegisterPage />}></Route>
       <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
       <Route path={ROUTES.CHECKOUT} element={<Checkout />}></Route>
+      <Route path={ROUTES.ADDITEM} element={<AddItem />}></Route>
     </Routes>
   );
 };

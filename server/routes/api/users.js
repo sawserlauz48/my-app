@@ -59,12 +59,12 @@ router.get("/:id", authMw, permissionsMiddleware(true, true, true), async (req, 
         console.log(chalk.redBright("Could'nt acquired the users", error));
     }
 })
-    .put("/:id", authMw, async (req, res) => {
+    .put("/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
         try {
-            await userValidationService.createUserIdValidation(req.userData._id);
+            await userValidationService.createUserIdValidation(req.params.id);
             let userAfterValidation = await userValidationService.updateUserValidation(req.body);
             let userAfterNormlize = await normalizeUser(userAfterValidation);
-            const userFromDb = await usersServiceModel.editUser(req.userData._id, userAfterNormlize);
+            const userFromDb = await usersServiceModel.editUser(req.params.id, userAfterNormlize);
             res.status(200).json({ msg: "Successfully edited the user", userFromDb });
             console.log(chalk.greenBright("Successfully edited the user"));
 
@@ -112,7 +112,7 @@ router.post("/login", async (req, res) => {
     }
 })
 
-router.patch("/cart", authMw, async (req, res) => {
+router.patch("/cart", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
         await userValidationService.createUserIdValidation(req.userData._id);
         const user = await usersServiceModel.getUserById(req.userData._id)
@@ -136,7 +136,7 @@ router.patch("/cart", authMw, async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
-router.get("/cart/get-my-cart", authMw, async (req, res) => {
+router.get("/cart/get-my-cart", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
         await userValidationService.createUserIdValidation(req.userData._id);
         const user = await usersServiceModel.getUserById(req.userData._id)
@@ -148,7 +148,7 @@ router.get("/cart/get-my-cart", authMw, async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
-router.patch("/cartItem/:id", authMw, async (req, res) => {
+router.patch("/cartItem/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
         const userId = await userValidationService.createUserIdValidation(req.userData._id);
         await itemsValidationService.createItemIdValidation(req.params.id);
@@ -160,7 +160,7 @@ router.patch("/cartItem/:id", authMw, async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
-router.put("/cartItem/:id", authMw, async (req, res) => {
+router.put("/cartItem/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
         const userId = await userValidationService.createUserIdValidation(req.userData._id);
         await itemsValidationService.createItemIdValidation(req.params.id);
@@ -172,7 +172,7 @@ router.put("/cartItem/:id", authMw, async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
-router.patch("/cart/reset", authMw, async (req, res) => {
+router.patch("/cart/reset", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
     try {
         const userId = await userValidationService.createUserIdValidation(req.userData._id);
         await restCart(userId)
@@ -183,7 +183,7 @@ router.patch("/cart/reset", authMw, async (req, res) => {
     }
 })
 
-    .put("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
+    .put("/:id", authMw, permissionsMiddleware(false, true, true), async (req, res) => {
         try {
             await userValidationService.createUserIdValidation(req.params.id);
             let userAfterValidation = await usersServiceModel.registerUserValidation(req.body);

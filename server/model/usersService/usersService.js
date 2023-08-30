@@ -50,6 +50,21 @@ const addToCart = async (itemToSave) => {
         return usersServiceMongo.addToCart(itemToSave);
     }
 }
+const updateCart = async (userId, itemToDelete) => {
+    if (dbOption === "mongo") {
+        return usersServiceMongo.updateCart(userId, itemToDelete);
+    }
+}
+const editCart = async (userId, itemToDelete, payload) => {
+    if (dbOption === "mongo") {
+        return usersServiceMongo.editCart(userId, itemToDelete, payload);
+    }
+}
+const restCart = async (userId) => {
+    if (dbOption === "mongo") {
+        return usersServiceMongo.restCart(userId);
+    }
+}
 
 module.exports = {
     registerUser,
@@ -60,5 +75,8 @@ module.exports = {
     deleteUser,
     getUserByEmail,
     bizUserChange,
-    addToCart
+    addToCart,
+    updateCart,
+    editCart,
+    restCart
 }

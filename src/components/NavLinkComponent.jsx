@@ -10,11 +10,13 @@ const NavLinkComponent = ({ url, label, icon, onclick, ...rest }) => {
         className={({ isActive }) =>
           isActive
             ? "text-lightmode-pBtn flex sm:flex-row flex-col"
-            : "flex sm:flex-row dark:text-white flex-col"
+            : "flex sm:flex-row dark:text-white flex-col "
         }
       >
-        <div className="nav-icon">{icon}</div>
-        <span className="link-text">{label}</span>
+        <div className="hover:text-lightmode-pBtn flex">
+          <div className="nav-icon ">{icon}</div>
+          <span className="link-text ">{label}</span>
+        </div>
       </NavLink>
     </div>
   );

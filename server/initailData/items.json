@@ -81,8 +81,8 @@
     },
     "price": 40,
     "ingredients": ["Red lentil", "Bread", "Paprika sauce"],
-    "dietary": "all",
-    "course": "vegetarian"
+    "dietary": "vegetarian",
+    "course": "starter"
   },
   {
     "title": "Stuffed dish",

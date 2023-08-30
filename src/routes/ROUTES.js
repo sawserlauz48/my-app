@@ -9,6 +9,7 @@ const ROUTES = {
     CHECKOUT: "/checkout",
     ORDERTABLE: "/ordertable",
     CARDINFO: "/cardinfo",
+    ADDITEM: "/additem",
 };
 
 export default ROUTES;

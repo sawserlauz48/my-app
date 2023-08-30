@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import ButtonComponent from "./ButtonComponent";
-import { buyIcon } from "../images/svgs";
+import { buyIcon, close, editIcon } from "../images/svgs";
+import { useSelector } from "react-redux";
 
 const CardComponent = ({
   title,
@@ -12,12 +13,20 @@ const CardComponent = ({
   onItemClick,
   onPlusBtnClick,
   ing,
+  display,
+  icon,
+  onEditClick,
 }) => {
+  const isAdmin = useSelector((bigPie) => bigPie.adminAuthSlice.isAdmin);
+
   const handleItemClick = () => {
     onItemClick(id);
   };
-  const onBtnClick = () => {
+  const buyBtnClick = () => {
     onPlusBtnClick(id, ing, image, title, price);
+  };
+  const handleEditBtn = () => {
+    onEditClick(id);
   };
   const handleDivClick = (event) => {
     event.stopPropagation();
@@ -25,8 +34,29 @@ const CardComponent = ({
   return (
     <div
       onClick={handleItemClick}
-      className="flex flex-col relative rounded-lg  shadow-lg border dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px]border-slate-50 bg-lightmode-bg border-slate-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:hover:bg-blue-900 hover:cursor-pointer"
+      className="flex flex-col relative rounded-lg  shadow-lg border mt-5 dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px]border-slate-50 bg-lightmode-bg border-slate-pBtn hover:bg-orange-200 dark:bg-darkmode-accent  dark:hover:bg-blue-900 hover:cursor-pointer"
     >
+      {isAdmin ? (
+        <div className={display}>
+          <button
+            // onClick={handleDeleteBtn}
+            className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-15px] right-[4px] z-10 w-8 h-8 flex justify-center items-center
+        "
+          >
+            {close}
+          </button>
+          <button
+            onClick={handleEditBtn}
+            className="bg-green-500 rounded-[50%] p-[5px] border-[3px] hover:bg-green-400 absolute top-[-15px] right-[40px] z-10 w-8 h-8 flex justify-center items-center
+        "
+          >
+            {editIcon}
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div>
         <img className=" rounded-t-lg w-full" src={image} alt={name} />
       </div>
@@ -40,18 +70,17 @@ const CardComponent = ({
         <div className=" flex items-stretch mt-auto">
           <div onClick={handleDivClick}>
             <ButtonComponent
-              icon={buyIcon}
-              className={
-                "h-[40px] w-[40px] flex justify-center items-center rounded-md mt-2"
-              }
-              onClick={onBtnClick}
+              icon={icon}
+              className={`
+                 h-[40px] w-[40px] flex justify-center items-center rounded-md mt-2`}
+              onClick={buyBtnClick}
             />
           </div>
           <div
-            className="ml-auto self-end font-normal text-slate-900 dark:text-slate-300
-          "
+            className={`ml-auto self-end font-normal text-slate-900 dark:text-slate-300 ${display}
+          " `}
           >
-            {price}₪
+            {price}
           </div>
         </div>
       </div>

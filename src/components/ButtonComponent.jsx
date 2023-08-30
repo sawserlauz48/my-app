@@ -1,9 +1,10 @@
 const ButtonComponent = ({ className, label, onClick, isDisable, icon }) => {
-  const handleSignInBtn = () => {
-    onClick();
+  const handleSignInBtn = (event) => {
+    onClick(event);
   };
   return (
     <button
+      id={label}
       type="button"
       onClick={handleSignInBtn}
       disabled={isDisable}

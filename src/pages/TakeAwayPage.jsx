@@ -3,16 +3,19 @@ import Listcomponent from "../components/ListComponent";
 import { useEffect, useState } from "react";
 import CardComponent from "../components/CardComponent";
 import { Outlet, useNavigate } from "react-router-dom";
-import { gridIcon, listIcon } from "../images/svgs";
+import { buyIcon, gridIcon, listIcon, plusIcon } from "../images/svgs";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../store/itmes";
+import newImage from "../images/new_picture.JPG";
+import ROUTES from "../routes/ROUTES";
 
 const TakeAway = () => {
   const [Items, setAllItems] = useState([]);
   const [display, setDisplay] = useState("grid");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAdmin = useSelector((bigPie) => bigPie.adminAuthSlice.isAdmin);
   useEffect(() => {
     axios
       .get("items/")
@@ -60,8 +63,27 @@ const TakeAway = () => {
       console.log(error);
     }
   };
+  console.log(isAdmin);
+  const handleAddItemClick = () => {
+    navigate(ROUTES.ADDITEM);
+  };
+  const handleEditBtn = () => {};
   return (
     <div className="relative">
+      <div>
+        <span
+          onClick={gridIconBtn}
+          className="  bg-lightmode-bg absolute top-[10px] right-[10px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200"
+        >
+          {gridIcon}
+        </span>
+        <span
+          onClick={listIconBtn}
+          className=" bg-lightmode-bg absolute top-[10px] right-[50px] w-[30px] h-[30px] p-[2px] shadow-xl rounded-[0.2rem] dark:border-slate-400 dark:hover:bg-slate-700 dark:bg-darkmode-bg hover:cursor-pointer border-[1px] border-slate-100 hover:bg-orange-200"
+        >
+          {listIcon}
+        </span>
+      </div>
       <div>
         <span
           onClick={gridIconBtn}
@@ -79,7 +101,7 @@ const TakeAway = () => {
       {display === "grid" ? (
         <div
           className="listGrid grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2   bg-lightmode-accent border dark:border-slate-700
-      border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-5"
+      border-slate-50 dark:bg-darkmode-accent  rounded-lg overflow-auto gap-y-6 gap-x-3"
         >
           {Items.map((item) => (
             <CardComponent
@@ -87,14 +109,28 @@ const TakeAway = () => {
               key={item.title}
               id={item._id}
               name={item.title}
-              price={item.price}
+              price={item.price + " " + "₪"}
               description={item.description}
               image={item.image.url}
               ing={item.ingredients}
+              icon={buyIcon}
+              onEditClick={handleEditBtn}
               onItemClick={handleItemClick}
               onPlusBtnClick={handlePlusBtnClick}
             ></CardComponent>
           ))}
+          {isAdmin ? (
+            <CardComponent
+              image={newImage}
+              name={"Add new item"}
+              description={"Click here to add a new item "}
+              display={"hidden"}
+              onItemClick={handleAddItemClick}
+              icon={plusIcon}
+            />
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""
@@ -110,14 +146,29 @@ const TakeAway = () => {
               key={item.title}
               id={item._id}
               name={item.title}
-              price={item.price}
+              price={item.price + " " + "₪"}
               description={item.description}
               image={item.image.url}
               ing={item.ingredients}
+              icon={buyIcon}
+              onEditClick={handleEditBtn}
               onItemClick={handleItemClick}
               onPlusBtnClick={handlePlusBtnClick}
             ></Listcomponent>
           ))}
+          {isAdmin ? (
+            <Listcomponent
+              image={newImage}
+              name={"Add new item"}
+              description={"Click here to add a new item "}
+              display={"hidden"}
+              onItemClick={handleAddItemClick}
+              icon={plusIcon}
+              price={""}
+            />
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""

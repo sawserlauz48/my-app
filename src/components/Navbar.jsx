@@ -102,7 +102,6 @@ const Navbar = () => {
         <li className="nav-item ">
           {isLoggedIn ? (
             <NavLinkComponent
-              // url={ROUTES.LOGOUT}
               icon={logoutIcon}
               label={"Sign out"}
               onClick={logoutClick}

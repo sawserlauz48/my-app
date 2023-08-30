@@ -102,7 +102,6 @@ const ProfilePage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[event.target.id] = event.target.value;
     setInputState(newInputState);
-    console.log(inputState, "line 106");
   };
 
   const handleSaveInBtn = async () => {

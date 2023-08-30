@@ -36,7 +36,7 @@ function App() {
           />
           <Navbar></Navbar>
         </header>
-        <main>
+        <main className="customBgTemple">
           <Router></Router>
           <CartComponent />
         </main>
