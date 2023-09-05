@@ -1,4 +1,4 @@
-const CheckboxComponent = ({ title, label, onClick, state }) => {
+const CheckboxComponent = ({ title, label, onClick, state, type }) => {
   const handleClick = (event) => {
     onClick(event);
   };
@@ -7,7 +7,7 @@ const CheckboxComponent = ({ title, label, onClick, state }) => {
     <div className="flex items-center mr-4 mt-4">
       <input
         checked={state[title]}
-        type="checkbox"
+        type={type}
         id={title}
         onChange={handleClick}
       />

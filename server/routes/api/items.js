@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
     }
 })
-    .post("/", authMw, permissionsMiddleware(true, false, false), async (req, res) => {
+    .post("/", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
         try {
             await itemsValidationService.createItemValidation(req.body);
             let normalItem = await normalizeItem(req.body, req.userData._id);
@@ -91,7 +91,7 @@ router.get("/:id", async (req, res) => {
         return res.status(500).send(err.message);
     }
 })
-    .delete("/:id", authMw, permissionsMiddleware(false, false, true), async (req, res) => {
+    .delete("/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
         try {
             await itemsValidationService.createItemIdValidation(req.params.id);
             const deletItem = await itemServiceModel.deleteItem(req.params.id)

@@ -72,6 +72,7 @@ const LoginPage = () => {
                 title={"rememberMe"}
                 label={"Remember me"}
                 state={checkBoxState}
+                type={"checkBox"}
                 onClick={handleClick}
               />
             </div>

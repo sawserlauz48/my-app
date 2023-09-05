@@ -12,6 +12,7 @@ import ROUTES from "../routes/ROUTES";
 
 const TakeAway = () => {
   const [Items, setAllItems] = useState([]);
+  const [ItemsOriginal, setAllItemsOriginal] = useState([]);
   const [display, setDisplay] = useState("grid");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,11 +64,24 @@ const TakeAway = () => {
       console.log(error);
     }
   };
-  console.log(isAdmin);
   const handleAddItemClick = () => {
     navigate(ROUTES.ADDITEM);
   };
-  const handleEditBtn = () => {};
+  const handleEditBtn = (id) => {
+    navigate(`/edititem/${id}`);
+  };
+  const handleDeletBtn = async (id) => {
+    try {
+      await axios.delete("items/" + id);
+      setAllItems((newItemsArr) =>
+        newItemsArr.filter((item) => item._id != id)
+      );
+      toast.success("Item has been deleted");
+    } catch (err) {
+      toast.error("Could'nt delete the item");
+    }
+  };
+
   return (
     <div className="relative">
       <div>
@@ -115,6 +129,7 @@ const TakeAway = () => {
               ing={item.ingredients}
               icon={buyIcon}
               onEditClick={handleEditBtn}
+              onDeleteClick={handleDeletBtn}
               onItemClick={handleItemClick}
               onPlusBtnClick={handlePlusBtnClick}
             ></CardComponent>
@@ -127,6 +142,7 @@ const TakeAway = () => {
               display={"hidden"}
               onItemClick={handleAddItemClick}
               icon={plusIcon}
+              className={"hidden"}
             />
           ) : (
             ""
@@ -152,6 +168,7 @@ const TakeAway = () => {
               ing={item.ingredients}
               icon={buyIcon}
               onEditClick={handleEditBtn}
+              onDeleteClick={handleDeletBtn}
               onItemClick={handleItemClick}
               onPlusBtnClick={handlePlusBtnClick}
             ></Listcomponent>
@@ -165,6 +182,7 @@ const TakeAway = () => {
               onItemClick={handleAddItemClick}
               icon={plusIcon}
               price={""}
+              className={"hidden"}
             />
           ) : (
             ""

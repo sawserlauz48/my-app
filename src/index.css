@@ -239,7 +239,7 @@ td:nth-child(4) {
 [type="radio"] {
   opacity: 0;
 }
-[type="checkbox"],
+[type="checkbox"] + label,
 [type="radio"] + label {
   @apply text-black dark:text-white;
   position: relative;
@@ -249,7 +249,7 @@ td:nth-child(4) {
   line-height: 25px;
 }
 
-[type="checkbox"],
+[type="checkbox"] + label::before,
 [type="radio"] + label::before {
   @apply outline outline-2 outline-slate-600 bg-lightmode-bg dark:bg-darkmode-bg rounded-md;
   content: "";
@@ -260,7 +260,7 @@ td:nth-child(4) {
   height: 18px;
   transition: 0.3s ease-in;
 }
-[type="checkbox"]:checked,
+[type="checkbox"]:checked + label::before,
 [type="radio"]:checked + label::before {
   @apply outline outline-2 outline-darkmode-pBtn bg-lightmode-bg dark:bg-darkmode-bg;
   content: "";
@@ -270,7 +270,7 @@ td:nth-child(4) {
   width: 18px;
   height: 18px;
 }
-[type="checkbox"]:checked,
+[type="checkbox"]:checked + label::after,
 [type="radio"]:checked + label::after {
   @apply bg-check-light-pattern dark:bg-check-dark-pattern;
   content: "";

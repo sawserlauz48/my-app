@@ -16,6 +16,8 @@ const CardComponent = ({
   display,
   icon,
   onEditClick,
+  onDeleteClick,
+  className,
 }) => {
   const isAdmin = useSelector((bigPie) => bigPie.adminAuthSlice.isAdmin);
 
@@ -25,8 +27,13 @@ const CardComponent = ({
   const buyBtnClick = () => {
     onPlusBtnClick(id, ing, image, title, price);
   };
-  const handleEditBtn = () => {
+  const handleEditBtn = (event) => {
     onEditClick(id);
+    event.stopPropagation();
+  };
+  const handleDeleteBtn = (event) => {
+    onDeleteClick(id);
+    event.stopPropagation();
   };
   const handleDivClick = (event) => {
     event.stopPropagation();
@@ -39,7 +46,7 @@ const CardComponent = ({
       {isAdmin ? (
         <div className={display}>
           <button
-            // onClick={handleDeleteBtn}
+            onClick={handleDeleteBtn}
             className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-15px] right-[4px] z-10 w-8 h-8 flex justify-center items-center
         "
           >
@@ -71,7 +78,7 @@ const CardComponent = ({
           <div onClick={handleDivClick}>
             <ButtonComponent
               icon={icon}
-              className={`
+              className={`${className}
                  h-[40px] w-[40px] flex justify-center items-center rounded-md mt-2`}
               onClick={buyBtnClick}
             />

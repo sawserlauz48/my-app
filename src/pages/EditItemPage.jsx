@@ -8,10 +8,10 @@ import QuantityComponent from "../components/QuantityComponent";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../store/itmes";
+import InputComponent from "../components/InputComponent";
 
-const ItemInfo = () => {
+const EditItemPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
   const navagite = useNavigate();
   const [state, setState] = useState({
     image: { url: "", alt: "" },
@@ -19,15 +19,6 @@ const ItemInfo = () => {
   });
   const [inputState, setInputState] = useState("");
   const [checkBoxState, setCheckBoxState] = useState("");
-
-  useEffect(() => {
-    const ing = state.ingredients.reduce((acc, item) => {
-      acc[item] = true;
-      return acc;
-    }, {});
-    setCheckBoxState(ing);
-  }, [state]);
-
   useEffect(() => {
     (async () => {
       try {
@@ -44,68 +35,27 @@ const ItemInfo = () => {
       }
     })();
   }, [id]);
-
-  const closeItemInfo = () => {
-    navagite("/takeaway");
-  };
-
-  const handleDivClick = (event) => {
-    event.stopPropagation();
-  };
-  const handleBuyClick = async () => {
-    const unChekedIngredients = Object.keys(checkBoxState)
-      .filter((key) => !checkBoxState[key])
-      .map((key) => `without ${key} `);
-    try {
-      await axios.patch(`/users/cart/`, {
-        item: id,
-        ingredients: checkBoxState,
-        specialInstruction: unChekedIngredients + " " + inputState,
-        title: state.title,
-        image: state.image.url,
-        price: state.price,
-      });
-      await axios
-        .get("users/cart/get-my-cart")
-        .then(({ data }) => {
-          dispatch(itemActions.addItemsLength(data.myCart.length));
-        })
-        .catch((err) => {
-          console.log(err.response, "err");
-        });
-      toast.success("item has been added to the cart");
-    } catch (error) {
-      toast.error("couldn't add the item to the cart");
-      console.log(error);
-    }
-    navagite("/takeaway");
-  };
   const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState = event.target.value;
     setInputState(newInputState);
   };
-  const handleClick = (event) => {
-    let newCheckBoxState = JSON.parse(JSON.stringify(checkBoxState));
-    newCheckBoxState[event.target.id] = event.target.checked;
-    setCheckBoxState(newCheckBoxState);
+  console.log(id, "id");
+  const closeItemEdit = () => {
+    navagite("/takeaway");
   };
-
   return (
-    <div
-      onClick={closeItemInfo}
-      className=" fixed itemInfo flex flex-col w-full bg-lightmode-bg/50 dark:bg-darkmode-accent/50 sm:p-[48px]  top-0 left-0 z-[999] h-full items-center justify-center"
-    >
+    <div className=" fixed itemInfo flex flex-col w-full dark:bg-darkmode-accent/50 sm:p-[48px]  top-0 left-0  h-full items-center justify-center">
       <div className="flex text-2xl bg-darkmode-pBtn px-[100vw] sm:px-[20vw] rounded-t-lg py-3 shadow-2xl sm:border-[2px] border-slate-600">
-        Item info
+        Edit item
       </div>
       <div
-        onClick={handleDivClick}
+        // onClick={handleDivClick}
         className=" relative  bg-lightmode-accent border dark:border-slate-700 h-max overflow-y-auto
-        border-slate-50 dark:bg-darkmode-accent rounded-[4px] p-[20px] w-full md:w-3/4 shadow-slate-600 shadow-md"
+        border-slate-50 dark:bg-darkmode-accent rounded-[4px] p-[20px] w-full sm:w-3/4 shadow-slate-600 shadow-md"
       >
         <span
-          onClick={closeItemInfo}
+          onClick={closeItemEdit}
           className=" absolute top-2 right-2 text-white bg-lightmode-pBtn rounded-sm border-slate-300 border-[1px] shadow-md hover:cursor-pointer"
         >
           {close}
@@ -141,7 +91,7 @@ const ItemInfo = () => {
                   title={item}
                   label={item}
                   state={checkBoxState}
-                  onClick={handleClick}
+                  //   onClick={handleClick}
                   type={"checkbox"}
                 ></CheckboxComponent>
               </div>
@@ -174,7 +124,7 @@ const ItemInfo = () => {
             <ButtonComponent
               label={"Add dish " + "( " + state.price + " ₪ )"}
               className={"w-full px-5 py-2.5 mr-2 mb-2"}
-              onClick={handleBuyClick}
+              //   onClick={handleBuyClick}
             ></ButtonComponent>
           </div>
         </div>
@@ -182,5 +132,4 @@ const ItemInfo = () => {
     </div>
   );
 };
-
-export default ItemInfo;
+export default EditItemPage;

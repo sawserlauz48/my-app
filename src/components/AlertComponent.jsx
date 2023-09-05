@@ -1,4 +1,4 @@
-const AlertComponent = ({ inputsErrorsState, name, onChange }) => {
+const AlertComponent = ({ inputsErrorsState, name, onChange, className }) => {
   const handleChange = (event) => {
     onChange(event);
   };
@@ -8,7 +8,7 @@ const AlertComponent = ({ inputsErrorsState, name, onChange }) => {
         <div>
           <div
             onChange={handleChange}
-            className="flex flex-col items-center p-4 mb-4 text-sm text-yellow-800 rounded-b-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+            className={`${className} flex flex-col items-center p-4 mb-4 text-sm text-yellow-800 rounded-b-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300`}
             role="alert"
           >
             <svg

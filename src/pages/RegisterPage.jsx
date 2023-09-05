@@ -159,7 +159,7 @@ const RegisterPage = () => {
         ))}
       </div>
       <ButtonComponent
-        onclick={handleSignInBtn}
+        onClick={handleSignInBtn}
         // isDisable={isDisable}
         label={"Sign up"}
       ></ButtonComponent>
