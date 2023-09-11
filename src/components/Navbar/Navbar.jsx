@@ -8,25 +8,15 @@ import {
   infoIcon,
   orderTableIcon,
   homeIcon,
-} from "../images/svgs";
+} from "../../images/svgs";
+import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { darkThemeActions } from "../store/darkTheme";
-import ROUTES from "../routes/ROUTES";
+import { darkThemeActions } from "../../store/darkTheme";
+import ROUTES from "../../routes/ROUTES";
 import NavLinkComponent from "./NavLinkComponent";
-import { authActions } from "../store/auth";
-import { useNavigate } from "react-router-dom";
-
-const pages = [
-  { label: "Home", url: ROUTES.HOME },
-  { label: "Take away", url: ROUTES.TAKEAWAY },
-  { label: "Order table", url: ROUTES.ORDERTABLE },
-  { label: "About", url: ROUTES.ABOUT },
-  { label: "Profile page", url: ROUTES.PROFILE },
-  { label: "Sign in", url: ROUTES.LOGIN },
-];
+import { authActions } from "../../store/auth";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
     (bigPie) => bigPie.darkThemeSlice.isDarkTheme
@@ -65,13 +55,6 @@ const Navbar = () => {
             url={ROUTES.TAKEAWAY}
             icon={truckIcon}
             label={"Take away"}
-          ></NavLinkComponent>
-        </li>
-        <li className="nav-item ">
-          <NavLinkComponent
-            url={ROUTES.ORDERTABLE}
-            icon={orderTableIcon}
-            label={"Order table"}
           ></NavLinkComponent>
         </li>
         <li className="nav-item ">

@@ -5,7 +5,7 @@ import AboutPage from "../pages/AboutPage";
 import OrderTable from "../pages/OrderTable";
 import TakeAway from "../pages/TakeAwayPage";
 import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
+import RegisterPage from "../pages/registerPage/RegisterPage";
 import ProfilePage from "../pages/ProfilePage";
 import ItemInfo from "../pages/ItemInfo";
 import Checkout from "../pages/Checkout";
@@ -22,15 +22,21 @@ const Router = () => {
       ></Route>
       <Route path={ROUTES.TAKEAWAY} element={<TakeAway />}>
         <Route path={`${ROUTES.TAKEAWAY}/:id`} element={<ItemInfo />}></Route>
+        <Route
+          path={`${ROUTES.TAKEAWAY}/${ROUTES.ADDITEM}`}
+          element={<AddItem />}
+        ></Route>
+        <Route
+          path={`${ROUTES.TAKEAWAY}/${ROUTES.EDITITEM}/:id`}
+          element={<EditItemPage />}
+        ></Route>
       </Route>
-      <Route path={ROUTES.ORDERTABLE} element={<OrderTable />}></Route>
       <Route path={ROUTES.ABOUT} element={<AboutPage />}></Route>
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route path={ROUTES.REGISTER} element={<RegisterPage />}></Route>
       <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
       <Route path={ROUTES.CHECKOUT} element={<Checkout />}></Route>
       <Route path={ROUTES.ADDITEM} element={<AddItem />}></Route>
-      <Route path={`${ROUTES.EDITITEM}/:id`} element={<EditItemPage />}></Route>
     </Routes>
   );
 };

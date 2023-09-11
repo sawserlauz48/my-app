@@ -46,7 +46,6 @@ const AddItem = () => {
     ingredients: "",
   });
   const [inputsErrorsState, setInputsErrorsState] = useState();
-
   const [inputIngredients, setInputs] = useState([]);
   const navigate = useNavigate();
   const addInput = () => {
@@ -80,8 +79,7 @@ const AddItem = () => {
     newInputState["ingredients"] = inputIngredients;
     setState(newInputState);
   };
-  console.log(inputsErrorsState, "inputsErrorsState");
-  console.log(inputIngredients, "inputIngredients");
+
   const handleAddBtnClick = async () => {
     try {
       const joiResponse = validateCreatItemSchema(state);
@@ -106,22 +104,24 @@ const AddItem = () => {
       toast.success("Item added successfully");
       navigate(ROUTES.TAKEAWAY);
     } catch (err) {
-      console.log(err);
       toast.error(err);
     }
   };
+  const closeItemInfo = () => {
+    navigate("/takeaway");
+  };
+
+  const handleDivClick = (event) => {
+    event.stopPropagation();
+  };
 
   return (
-    <div className="flex flex-col w-full justify-center items-center">
-      <div className="flex text-2xl justify-center bg-darkmode-pBtn w-full sm:w-[40vw] sm:rounded-t-lg py-3 shadow-2xl sm:border-[2px] border-slate-600">
-        Add item
-      </div>
-
-      <div
-        // onClick={handleDivClick}
-        className="bg-lightmode-accent border w-full sm:w-3/4 dark:border-slate-700 p-[48px] container
-        border-slate-50 dark:bg-darkmode-accent rounded-[4px] shadow-slate-600 shadow-md"
-      >
+    <div onClick={closeItemInfo} className="outerDiV">
+      <div className=" innerDiv">Add item</div>
+      <div onClick={handleDivClick} className="stopPropagationDiv">
+        <span onClick={closeItemInfo} className="spanDiv ">
+          {close}
+        </span>
         <div className="flex flex-col items-center sm:items-start space-x-7 space-y-4 sm:flex-row ">
           <div>
             <img

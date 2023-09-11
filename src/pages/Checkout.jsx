@@ -13,6 +13,7 @@ import {
 } from "../images/svgs";
 import ROUTES from "../routes/ROUTES";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [Items, setAllItems] = useState([]);
@@ -28,7 +29,7 @@ const Checkout = () => {
         setAllItems(data.myCart);
       })
       .catch((err) => {
-        console.log(err.response, "err");
+        toast.error(err.response);
       });
   }, []);
 
@@ -40,7 +41,7 @@ const Checkout = () => {
         dispatch(itemActions.addItemsLength(data.length));
       })
       .catch((err) => {
-        console.log(err.response, "err");
+        toast.error(err.response);
       });
   };
   const HandleEditBtn = () => {};
@@ -53,7 +54,6 @@ const Checkout = () => {
     inputTextState
   ) => {
     setInputText(inputTextState);
-    console.log(inputTextState, "inputTextState");
     const unChekedIngredients = Object.keys(checkBoxState)
       .filter((key) => !checkBoxState[key])
       .map((key) => `without ${key} `);
@@ -71,7 +71,7 @@ const Checkout = () => {
         setAllItems(data.myCart);
       })
       .catch((err) => {
-        console.log(err.response, "err");
+        toast.error(err.response);
       });
   };
   const handleBuyBtn = async () => {

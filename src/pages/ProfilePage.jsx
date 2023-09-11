@@ -109,7 +109,6 @@ const ProfilePage = () => {
       const joiResponse = validateProfileSchema(inputState);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
-        console.log(inputsErrorsState);
         return;
       }
       await axios.put(`/users/${id}`, {
@@ -132,7 +131,6 @@ const ProfilePage = () => {
       });
       toast.success("update succesful");
     } catch (err) {
-      console.log(err);
       toast.error(err);
     }
   };
@@ -157,7 +155,7 @@ const ProfilePage = () => {
       ))}
       <div className="registerNamesInput grid grid-cols-2 gap-5 mt-5">
         {nameInputs.map((input) => (
-          <div key={input.name}>
+          <div key={input.name + Date.now()}>
             <InputComponent
               label={input.label}
               name={input.name}
@@ -172,7 +170,7 @@ const ProfilePage = () => {
       </div>
       <div className="registerNamesInput grid grid-cols-2 gap-5 mt-5">
         {AddressInputs.map((input) => (
-          <div key={input.label}>
+          <div key={input.label + Date.now()}>
             <InputComponent
               label={input.label}
               name={input.name}
@@ -187,9 +185,8 @@ const ProfilePage = () => {
       </div>
       <div className="registerNamesInput grid grid-cols-1 gap-5 mt-5 mb-10">
         {imageInputs.map((input) => (
-          <div key={input.label}>
+          <div key={input.label + Date.now()}>
             <InputComponent
-              key={input.name + Date.now()}
               label={input.label}
               name={input.name}
               required={input.isRiq}

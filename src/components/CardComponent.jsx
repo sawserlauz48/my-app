@@ -48,7 +48,7 @@ const CardComponent = ({
           <button
             onClick={handleDeleteBtn}
             className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-15px] right-[4px] z-10 w-8 h-8 flex justify-center items-center
-        "
+            "
           >
             {close}
           </button>
@@ -94,21 +94,21 @@ const CardComponent = ({
     </div>
   );
 };
-
 CardComponent.propTypes = {
   id: PropTypes.string,
-  img: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  ing: PropTypes.array,
+  image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  // onDelete: PropTypes.func,
-  onOpen: PropTypes.func,
-  // canEdit: PropTypes.bool,
-};
-
-CardComponent.defaultProps = {
-  img: "https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail-300x225.jpg",
-  alt: "",
-  canEdit: false,
+  onDeleteClick: PropTypes.func,
+  onEditClick: PropTypes.func,
+  display: PropTypes.string,
+  price: PropTypes.string,
+  onItemClick: PropTypes.func,
+  className: PropTypes.string,
+  onPlusBtnClick: PropTypes.func,
+  icon: PropTypes.object,
 };
 
 export default CardComponent;

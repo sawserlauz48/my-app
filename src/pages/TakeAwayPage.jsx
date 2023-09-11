@@ -12,7 +12,6 @@ import ROUTES from "../routes/ROUTES";
 
 const TakeAway = () => {
   const [Items, setAllItems] = useState([]);
-  const [ItemsOriginal, setAllItemsOriginal] = useState([]);
   const [display, setDisplay] = useState("grid");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const TakeAway = () => {
         setAllItems(data.allItems);
       })
       .catch((err) => {
-        console.log(err.response, "err");
+        toast.error(err.response);
       });
   }, []);
   const handleItemClick = (id) => {
@@ -56,19 +55,19 @@ const TakeAway = () => {
           dispatch(itemActions.addItemsLength(data.myCart.length));
         })
         .catch((err) => {
-          console.log(err.response, "err");
+          toast.error(err.response);
         });
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");
-      console.log(error);
+      toast.error(err.response);
     }
   };
   const handleAddItemClick = () => {
-    navigate(ROUTES.ADDITEM);
+    navigate(`${ROUTES.TAKEAWAY}/additem`);
   };
   const handleEditBtn = (id) => {
-    navigate(`/edititem/${id}`);
+    navigate(`${ROUTES.TAKEAWAY}/edititem/` + id);
   };
   const handleDeletBtn = async (id) => {
     try {

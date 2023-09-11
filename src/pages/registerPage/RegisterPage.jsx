@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import ButtonComponent from "../components/ButtonComponent";
-import InputComponent from "../components/InputComponent";
+import "./registerPage.css";
+import { useState } from "react";
+import ButtonComponent from "../../components/ButtonComponent";
+import InputComponent from "../../components/InputComponent";
 import { useNavigate } from "react-router-dom";
-import validateRegisterSchema from "../validations/registerValidation";
+import validateRegisterSchema from "../../validations/registerValidation";
 import { toast } from "react-toastify";
-import ROUTES from "../routes/ROUTES";
+import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 const inputs = [
   { label: "Email *", name: "email", isRiq: true, type: "email" },
@@ -54,7 +55,6 @@ const RegisterPage = () => {
   });
   const [inputsErrorsState, setInputsErrorsState] = useState();
   const navigate = useNavigate();
-  console.log(inputState);
   const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[event.target.id] = event.target.value;
@@ -160,8 +160,8 @@ const RegisterPage = () => {
       </div>
       <ButtonComponent
         onClick={handleSignInBtn}
-        // isDisable={isDisable}
         label={"Sign up"}
+        className={"h-12"}
       ></ButtonComponent>
     </div>
   );

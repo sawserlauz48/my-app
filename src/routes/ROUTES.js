@@ -7,7 +7,6 @@ const ROUTES = {
     PROFILE: "/profile",
     TAKEAWAY: "/takeaway",
     CHECKOUT: "/checkout",
-    ORDERTABLE: "/ordertable",
     CARDINFO: "/cardinfo",
     ADDITEM: "/additem",
     EDITITEM: "/edititem",

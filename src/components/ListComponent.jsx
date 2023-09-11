@@ -3,7 +3,7 @@ import ButtonComponent from "./ButtonComponent";
 import { buyIcon, close, editIcon } from "../images/svgs";
 import { useSelector } from "react-redux";
 
-const Listcomponent = ({
+const ListComponent = ({
   title,
   name,
   price,
@@ -38,7 +38,6 @@ const Listcomponent = ({
       {isAdmin ? (
         <div className={display}>
           <button
-            // onClick={handleDeleteBtn}
             className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-15px] right-[4px] w-8 h-8 flex justify-center items-center
         "
           >
@@ -88,21 +87,21 @@ const Listcomponent = ({
   );
 };
 
-Listcomponent.propTypes = {
+ListComponent.propTypes = {
   id: PropTypes.string,
+  title: PropTypes.string,
+  ing: PropTypes.array,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  // onDelete: PropTypes.func,
-  onOpen: PropTypes.func,
-  // canEdit: PropTypes.bool,
+  onDeleteClick: PropTypes.func,
+  onEditClick: PropTypes.func,
+  display: PropTypes.string,
+  price: PropTypes.string,
+  onItemClick: PropTypes.func,
+  className: PropTypes.string,
+  onPlusBtnClick: PropTypes.func,
+  icon: PropTypes.object,
 };
 
-Listcomponent.defaultProps = {
-  image:
-    "https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail-300x225.jpg",
-  alt: "",
-  canEdit: false,
-};
-
-export default Listcomponent;
+export default ListComponent;

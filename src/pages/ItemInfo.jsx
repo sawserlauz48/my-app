@@ -12,7 +12,7 @@ import { itemActions } from "../store/itmes";
 const ItemInfo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navagite = useNavigate();
+  const navigate = useNavigate();
   const [state, setState] = useState({
     image: { url: "", alt: "" },
     ingredients: [],
@@ -40,13 +40,13 @@ const ItemInfo = () => {
         delete newState.createdAt;
         setState(newState);
       } catch (err) {
-        console.log(err);
+        toast.error(err.response);
       }
     })();
   }, [id]);
 
   const closeItemInfo = () => {
-    navagite("/takeaway");
+    navigate("/takeaway");
   };
 
   const handleDivClick = (event) => {
@@ -71,14 +71,14 @@ const ItemInfo = () => {
           dispatch(itemActions.addItemsLength(data.myCart.length));
         })
         .catch((err) => {
-          console.log(err.response, "err");
+          toast.error(err.response);
         });
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");
-      console.log(error);
+      toast.error(err.response);
     }
-    navagite("/takeaway");
+    navigate("/takeaway");
   };
   const handleInputChange = (event) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
@@ -92,22 +92,10 @@ const ItemInfo = () => {
   };
 
   return (
-    <div
-      onClick={closeItemInfo}
-      className=" fixed itemInfo flex flex-col w-full bg-lightmode-bg/50 dark:bg-darkmode-accent/50 sm:p-[48px]  top-0 left-0 z-[999] h-full items-center justify-center"
-    >
-      <div className="flex text-2xl bg-darkmode-pBtn px-[100vw] sm:px-[20vw] rounded-t-lg py-3 shadow-2xl sm:border-[2px] border-slate-600">
-        Item info
-      </div>
-      <div
-        onClick={handleDivClick}
-        className=" relative  bg-lightmode-accent border dark:border-slate-700 h-max overflow-y-auto
-        border-slate-50 dark:bg-darkmode-accent rounded-[4px] p-[20px] w-full md:w-3/4 shadow-slate-600 shadow-md"
-      >
-        <span
-          onClick={closeItemInfo}
-          className=" absolute top-2 right-2 text-white bg-lightmode-pBtn rounded-sm border-slate-300 border-[1px] shadow-md hover:cursor-pointer"
-        >
+    <div onClick={closeItemInfo} className="outerDiV">
+      <div className="innerDiv">Item info</div>
+      <div onClick={handleDivClick} className="stopPropagationDiv ">
+        <span onClick={closeItemInfo} className="spanDiv ">
           {close}
         </span>
         <div className="flex flex-col items-center sm:items-start space-x-7 space-y-4 sm:flex-row ">

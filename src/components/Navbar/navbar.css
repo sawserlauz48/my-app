@@ -1,0 +1,125 @@
+.navbar {
+  position: fixed;
+  transition: 0.2s ease;
+  overflow-y: auto;
+  z-index: 999;
+}
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:nth-child(5) {
+  margin-top: auto;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  text-decoration: none;
+}
+.nav-link .nav-icon {
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+.nav-link {
+  @apply hover:text-darkmode-pBtn;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+}
+
+/* large screen navbar */
+@media (min-width: 641px) {
+  .navbar {
+    @apply border-r-[1px] border-slate-300 bg-lightmode-accent;
+    top: 0;
+    width: 5rem;
+    height: 100vh;
+  }
+  .navbar:hover {
+    width: 15rem;
+  }
+  .navbar:hover .link-text {
+    display: inline;
+    transition: opacity 0.3s;
+  }
+}
+/* small screen navbar */
+@media (max-width: 640px) {
+  .divider {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+  .navbar {
+    @apply bg-lightmode-accent pb-10 rounded-t-[1rem] border-x-[1px] border-t-[1px] border-slate-300 dark:border-x-[1px] dark:border-t-[1px] dark:border-slate-800 fixed;
+    width: 100%;
+    height: 5rem;
+    display: fixed;
+    bottom: -4rem;
+  }
+  .drawer-swipe {
+    @apply bg-lightmode-accent dark:bg-darkmode-accent;
+    height: 10px;
+    justify-content: center;
+    align-self: center;
+    display: flex;
+  }
+  .drawer-swipe::before {
+    @apply bg-slate-400 border-[0.5px] border-slate-600 dark:bg-slate-700;
+    content: "";
+    width: 40px;
+    height: 10px;
+    border-radius: 1.5rem;
+    top: 5px;
+    position: relative;
+  }
+  .navbar-nav {
+    @apply grid grid-cols-1;
+  }
+  .navbar:hover {
+    overflow-y: hidden;
+    width: 100%;
+    height: 12rem;
+    display: fixed;
+    bottom: 0rem;
+    @apply px-2;
+  }
+  .navbar-nav {
+    @apply grid-cols-3 my-5 gap-2;
+  }
+  .nav-link {
+    @apply hover:text-darkmode-text dark:hover:text-lightmode-pBtn;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    height: 5rem;
+    padding: 5px;
+    background-color: #c7923872;
+    transition: 0.4s ease-in-out;
+    @apply rounded-md dark:bg-darkmode-bg dark:hover:text-lightmode-pBtn hover:bg-darkmode-pBtn hover:text-white dark:hover:bg-blue-900
+    border-[1px] border-slate-300 dark:border-slate-800;
+  }
+
+  .link-text {
+    margin: 0;
+    display: block;
+  }
+}

@@ -117,7 +117,7 @@ router.patch("/cart", authMw, permissionsMiddleware(true, true, true), async (re
         await userValidationService.createUserIdValidation(req.userData._id);
         const user = await usersServiceModel.getUserById(req.userData._id)
         await itemsValidationService.createItemIdValidation(req.body.item);
-        await itemServiceModel.getItemsById(req.body.item); // item to buy
+        await itemServiceModel.getItemsById(req.body.item);
         user.cart.push(
             {
                 ingredients: req.body.ingredients,
@@ -152,7 +152,7 @@ router.patch("/cartItem/:id", authMw, permissionsMiddleware(true, true, true), a
     try {
         const userId = await userValidationService.createUserIdValidation(req.userData._id);
         await itemsValidationService.createItemIdValidation(req.params.id);
-        await updateCart(req.userData._id, req.params.id) // need to make service module
+        await updateCart(req.userData._id, req.params.id)
         const user = await usersServiceModel.getUserById(userId)
         res.status(200).json(user.cart)
     } catch (err) {
@@ -164,7 +164,7 @@ router.put("/cartItem/:id", authMw, permissionsMiddleware(true, true, true), asy
     try {
         const userId = await userValidationService.createUserIdValidation(req.userData._id);
         await itemsValidationService.createItemIdValidation(req.params.id);
-        await editCart(req.userData._id, req.params.id, req.body) // need to make service module
+        await editCart(req.userData._id, req.params.id, req.body)
         const user = await usersServiceModel.getUserById(userId)
         res.status(200).json(user.cart)
     } catch (err) {

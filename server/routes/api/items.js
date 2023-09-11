@@ -64,7 +64,7 @@ router.get("/:id", async (req, res) => {
 
 
     }
-}).put(("/:id"), authMw, permissionsMiddleware(false, false, true), async (req, res) => {
+}).put(("/:id"), authMw, permissionsMiddleware(false, true, false), async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
         let itemAfterValidation = await itemsValidationService.createItemValidation(req.body)

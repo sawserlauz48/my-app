@@ -1,5 +1,5 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "./components/Footer";
 import Router from "./routes/router";
@@ -16,7 +16,6 @@ function App() {
   const isDarkTheme = useSelector(
     (bigpie) => bigpie.darkThemeSlice.isDarkTheme
   );
-  // const isLoggedIn = useSelector((bigPie) => bigPie.authSlice.isLoggedIn);
 
   return (
     <div className={isDarkTheme}>
