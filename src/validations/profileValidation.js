@@ -8,9 +8,9 @@ const profileSchema = Joi.object({
     phone: Joi.string().min(9).max(100).label("Phone").required(),
     country: Joi.string().min(2).max(100).label("Country").required(),
     city: Joi.string().min(2).max(100).label("City").required(),
-    houseNumber: Joi.string().min(1).max(100).label("House number").required(),
+    houseNumber: Joi.number().min(1).max(100).label("House number").required(),
     street: Joi.string().min(2).max(100).label("Street").required(),
-    imageUrl: Joi.string().min(6).max(100).label("Image Url").allow(""),
+    data: Joi.string().min(6).max(100).label("Image Url").allow(""),
     imageAlt: Joi.string().min(6).max(100).label("Image Alt").allow(""),
     email: Joi.string()
         .email({ tlds: { allow: false } })

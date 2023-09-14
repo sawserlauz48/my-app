@@ -3,7 +3,7 @@
     "title": "Greek salad",
     "description": "Lettuce, cucumber, cherry tomatoes, black olives and Circassian cheese seasoned with the house sauce.",
     "image": {
-      "url": "https://i.ibb.co/Bcx2fJd/DSC-2465.jpg",
+      "data": "https://i.ibb.co/Bcx2fJd/DSC-2465.jpg",
       "alt": "Greek salad"
     },
     "price": 48,
@@ -22,7 +22,7 @@
     "title": "Rustic salad",
     "description": "Lettuce, cucumber, carrot,black olives, walnuts, seasoned with the house sauce.",
     "image": {
-      "url": "https://i.ibb.co/KsTSqtn/DSC-2495.jpg",
+      "data": "https://i.ibb.co/KsTSqtn/DSC-2495.jpg",
       "alt": "Rustic salad"
     },
     "price": 48,
@@ -42,7 +42,7 @@
     "title": "Chicken salad",
     "description": "Lettuce, cucumber, carrot, purple onion, pieces of grilled chicken breast and croutons, in thousand island sauce and sweet chili.",
     "image": {
-      "url": "https://i.ibb.co/pwLD3CH/DSC-2475.jpg",
+      "data": "https://i.ibb.co/pwLD3CH/DSC-2475.jpg",
       "alt": "Chicken salad"
     },
     "price": 54,
@@ -64,7 +64,7 @@
     "title": "Homemade soup",
     "description": "Red lentil soup served in a homemade bread bowl (available in the winter months)",
     "image": {
-      "url": "https://i.ibb.co/MDxfdQc/DSC-2442.jpg",
+      "data": "https://i.ibb.co/MDxfdQc/DSC-2442.jpg",
       "alt": "Homemade soup"
     },
     "price": 30,
@@ -76,7 +76,7 @@
     "title": "Eggplants in Tabon",
     "description": "Layers of fried eggplant, basil, tomato sauce, creamed in Tabon with mozzarella",
     "image": {
-      "url": "https://i.ibb.co/NKhx40P/DSC-2481.jpg",
+      "data": "https://i.ibb.co/NKhx40P/DSC-2481.jpg",
       "alt": "Eggplants in Tabon"
     },
     "price": 40,
@@ -88,7 +88,7 @@
     "title": "Stuffed dish",
     "description": "Peppers, eggplants and vine leaves are stuffed according to the best tradition",
     "image": {
-      "url": "https://i.ibb.co/CwfdvRX/DSC-2449.jpg",
+      "data": "https://i.ibb.co/CwfdvRX/DSC-2449.jpg",
       "alt": "Stuffed dish"
     },
     "price": 80,
@@ -100,7 +100,7 @@
     "title": "lahmajoun",
     "description": "Pastry with minced meat",
     "image": {
-      "url": "https://i.ibb.co/zR8WQmg/DSC-2455.jpg",
+      "data": "https://i.ibb.co/zR8WQmg/DSC-2455.jpg",
       "alt": "lahmajoun"
     },
     "price": 15,
@@ -112,7 +112,7 @@
     "title": "Garlic bread",
     "description": "Pastry with added garlic, parsley and mozzarella cheese",
     "image": {
-      "url": "https://i.ibb.co/gvyjcRX/DSC-2438.jpg",
+      "data": "https://i.ibb.co/gvyjcRX/DSC-2438.jpg",
       "alt": "Garlic bread"
     },
     "price": 15,
@@ -124,7 +124,7 @@
     "title": "Alfredo pizza",
     "description": "Pizza in mushroom cream sauce with mushrooms, onions and black olives",
     "image": {
-      "url": "https://i.ibb.co/3sphqdQ/DSC-2485.jpg",
+      "data": "https://i.ibb.co/3sphqdQ/DSC-2485.jpg",
       "alt": "Alfredo pizza"
     },
     "price": 30,
@@ -136,7 +136,7 @@
     "title": "Pizza",
     "description": "Pizza in tomato sauce with mozzarella cheese",
     "image": {
-      "url": "https://i.ibb.co/dQchtq5/DSC-2464.jpg",
+      "data": "https://i.ibb.co/dQchtq5/DSC-2464.jpg",
       "alt": "Pizza"
     },
     "price": 20,
@@ -148,7 +148,7 @@
     "title": "Turkish Fida",
     "description": "Minced mutton and veal with onions and tomatoes",
     "image": {
-      "url": "https://i.ibb.co/rF2Z9L8/DSC-2491.jpg",
+      "data": "https://i.ibb.co/rF2Z9L8/DSC-2491.jpg",
       "alt": "Turkish Fida"
     },
     "price": 25,
@@ -160,7 +160,7 @@
     "title": "Ciabatta kebab",
     "description": "with the addition of onions and tomatoes",
     "image": {
-      "url": "https://i.ibb.co/WPym7p7/DSC-2596.jpg",
+      "data": "https://i.ibb.co/WPym7p7/DSC-2596.jpg",
       "alt": "Ciabatta kebab"
     },
     "price": 30,
@@ -172,7 +172,7 @@
     "title": "Ciabatta chicken breast",
     "description": "with the addition of onions and tomatoes",
     "image": {
-      "url": "https://i.ibb.co/gtMQXC9/DSC-2599.jpg",
+      "data": "https://i.ibb.co/gtMQXC9/DSC-2599.jpg",
       "alt": "Ciabatta kebab"
     },
     "price": 30,
@@ -184,7 +184,7 @@
     "title": "Tantuni kebab",
     "description": "Turkish tortilla with veal",
     "image": {
-      "url": "https://i.ibb.co/F4zNkM6/DSC-2493.jpg",
+      "data": "https://i.ibb.co/F4zNkM6/DSC-2493.jpg",
       "alt": "Tantuni kebab"
     },
     "price": 30,
@@ -196,7 +196,7 @@
     "title": "Tantuni chicken breast",
     "description": "Turkish tortilla with chicken breast",
     "image": {
-      "url": "https://i.ibb.co/bLq5kBy/DSC-2477.jpg",
+      "data": "https://i.ibb.co/bLq5kBy/DSC-2477.jpg",
       "alt": "Tantuni chicken breast"
     },
     "price": 25,
@@ -208,7 +208,7 @@
     "title": "Metaza",
     "description": "dumplings filled with Circassian cheese and green onion served with garlic yogurt sauce",
     "image": {
-      "url": "https://i.ibb.co/4Ws86mD/DSC-2486.jpg",
+      "data": "https://i.ibb.co/4Ws86mD/DSC-2486.jpg",
       "alt": "Metaza"
     },
     "price": 52,
@@ -220,7 +220,7 @@
     "title": "Ravioli",
     "description": "dumplings filled with a mix of Circassian and mozzarella cheese",
     "image": {
-      "url": "https://i.ibb.co/2vpXzy9/DSC-2471.jpg",
+      "data": "https://i.ibb.co/2vpXzy9/DSC-2471.jpg",
       "alt": "Ravioli"
     },
     "price": 52,
@@ -239,7 +239,7 @@
     "title": "Manti",
     "description": "Turkish dumplings stuffed with beef in a garlic/tomato yogurt sauce",
     "image": {
-      "url": "https://i.ibb.co/D1KD8XZ/DSC-2497.jpg",
+      "data": "https://i.ibb.co/D1KD8XZ/DSC-2497.jpg",
       "alt": "Manti"
     },
     "price": 58,
@@ -251,7 +251,7 @@
     "title": "Iskander kebab",
     "description": "Turkish veal kebab served on a bed of Ciabatta bread with tomato sauce, eggplant and yogurt",
     "image": {
-      "url": "https://i.ibb.co/Ch9vb27/DSC-2462.jpg",
+      "data": "https://i.ibb.co/Ch9vb27/DSC-2462.jpg",
       "alt": "Iskander kebab"
     },
     "price": 70,
@@ -263,7 +263,7 @@
     "title": "Kebab in the Tabun",
     "description": "Served on a bed of eggplant with tomato sauce, hot pepper, cherry tomatoes and mozzarella cheese wrapped in sesame bread and Black Cumin",
     "image": {
-      "url": "https://i.ibb.co/bgqNGjW/DSC-2489.jpg",
+      "data": "https://i.ibb.co/bgqNGjW/DSC-2489.jpg",
       "alt": "Kebab in the Tabun"
     },
     "price": 70,
@@ -281,7 +281,7 @@
     "title": "Lemonade with mint",
     "description": "Lemonade with crushed mint",
     "image": {
-      "url": "https://i.ibb.co/n1gnktp/DSC-2600.jpg",
+      "data": "https://i.ibb.co/n1gnktp/DSC-2600.jpg",
       "alt": "Lemonade with mint"
     },
     "price": 28,
@@ -293,7 +293,7 @@
     "title": "Soft drink",
     "description": "Soft drink of your choice",
     "image": {
-      "url": "",
+      "data": "",
       "alt": "Soft drink"
     },
     "price": 15,

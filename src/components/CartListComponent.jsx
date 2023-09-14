@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { editIcon, close } from "../images/svgs";
 import CheckboxComponent from "./CheckboxComponent";
 import ButtonComponent from "./ButtonComponent";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CartListComponent = ({
   image,
@@ -13,8 +15,8 @@ const CartListComponent = ({
   onClickEditBtn,
   onClickCloseBtn,
   onClickSaveBtn,
-  onChange,
   id,
+  value,
 }) => {
   const [inputTextState, setInputTextState] = useState("");
   const [isstate, setState] = useState(false);
@@ -24,6 +26,7 @@ const CartListComponent = ({
     const ingredientsArray = Object.entries(ingredients).map(
       ([key, value]) => ({ title: key, isChecked: value })
     );
+    setInputTextState(instractions);
     setIngredients(ingredientsArray);
     setCheckBoxState(ingredients);
   }, []);
@@ -32,7 +35,6 @@ const CartListComponent = ({
   };
   const handleEditBtn = () => {
     setState(!isstate);
-    onClickEditBtn();
   };
   const handleClick = (event) => {
     let newCheckBoxState = JSON.parse(JSON.stringify(checkBoxState));
@@ -44,15 +46,38 @@ const CartListComponent = ({
     newInputState = event.target.value;
     setInputTextState(newInputState);
   };
+
+  console.log(inputTextState, "inputTextState1");
   const handleSaveBtn = async () => {
-    onClickSaveBtn(id, price, image, title, checkBoxState, inputTextState);
+    console.log(inputTextState, "inputTextState2");
+    const unChekedIngredients = Object.keys(checkBoxState)
+      .filter((key) => !checkBoxState[key])
+      .map((key) => `without ${key} `);
+    await axios.put("users/cartItem/" + id, {
+      ingredients: checkBoxState,
+      specialInstruction: unChekedIngredients + " " + inputTextState,
+      title,
+      image,
+      price,
+      _id: id,
+    });
+    await axios
+      .get("users/cart/get-my-cart")
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        toast.error(err.response);
+      });
     setState(!isstate);
+    onClickSaveBtn();
+    console.log(inputTextState, "inputTextState3");
   };
   const handleCancleBtn = () => {
     setState(!isstate);
   };
   return (
-    <div className="w-full relative p-2 ">
+    <div className="w-full relative p-2 mt-10 ">
       <button
         onClick={handleDeleteBtn}
         className="bg-red-500 rounded-[50%] p-[5px] border-[3px] hover:bg-red-400 absolute top-[-18px] right-[15px] z-10
@@ -111,6 +136,7 @@ const CartListComponent = ({
                   <CheckboxComponent
                     label={item.title}
                     state={checkBoxState}
+                    type={"checkBox"}
                     key={title + Date.now() + index}
                     title={item.title}
                     onClick={handleClick}

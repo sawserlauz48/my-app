@@ -5,7 +5,10 @@ const {
 } = require("./helpers/mongooseValidation");
 
 const Image = new mongoose.Schema({
-    url: URL,
+    data: {
+        type: String,
+        trim: true,
+    },
     alt: DEFAULT_STRING_SCHEMA_REQUIRED,
 });
 

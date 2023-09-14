@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import ButtonComponent from "./ButtonComponent";
-import { buyIcon, close, editIcon } from "../images/svgs";
+import { close, editIcon } from "../images/svgs";
 import { useSelector } from "react-redux";
 
 const CardComponent = ({
@@ -20,7 +20,6 @@ const CardComponent = ({
   className,
 }) => {
   const isAdmin = useSelector((bigPie) => bigPie.adminAuthSlice.isAdmin);
-
   const handleItemClick = () => {
     onItemClick(id);
   };
@@ -65,7 +64,11 @@ const CardComponent = ({
       )}
 
       <div>
-        <img className=" rounded-t-lg w-full" src={image} alt={name} />
+        <img
+          className=" rounded-t-lg w-full"
+          src={image.data || image}
+          alt={name}
+        />
       </div>
       <div className="p-5 h-full flex flex-col">
         <div className=" text-2xl font-bold tracking-tight text-lightmode-text dark:text-darkmode-text">
@@ -87,7 +90,7 @@ const CardComponent = ({
             className={`ml-auto self-end font-normal text-slate-900 dark:text-slate-300 ${display}
           " `}
           >
-            {price}
+            {price} ₪
           </div>
         </div>
       </div>

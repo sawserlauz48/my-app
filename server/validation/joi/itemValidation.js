@@ -7,14 +7,12 @@ const createItemSchema = Joi.object({
     dietary: Joi.string().min(2).max(256).required(),
     course: Joi.string().min(2).max(500).required(),
     ingredients: Joi.array().required(),
-    image: Joi.object().keys({
-        url: Joi.string().regex(
-            new RegExp(
-                /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
-            )
-        ).allow(""),
+    image: Joi.object({
+        data: Joi.string().allow(""),
+        contentType: Joi.string().valid('image/jpeg', 'image/jpg', 'image/png', 'image/gif'),
         alt: Joi.string().min(2).max(256).allow(""),
-    }),
+    }
+    )
 });
 
 const validateItemSchema = (userInput) => {

@@ -9,11 +9,12 @@ const profileSchema = Joi.object({
         .regex(new RegExp(/0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}/))
         .required(),
     email: Joi.string().regex(new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)).required(),
-    image: Joi.object().keys({
-        url: Joi.string()
-            .regex(new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/)).allow(""),
+    image: Joi.object({
+        data: Joi.string().allow(""),
+        contentType: Joi.string().valid('image/jpeg', 'image/jpg', 'image/png', 'image/gif'),
         alt: Joi.string().min(2).max(256).allow(""),
-    }),
+    }
+    ),
     address: Joi.object().keys({
         country: Joi.string().min(2).max(256).required(),
         city: Joi.string().min(2).max(256).required(),

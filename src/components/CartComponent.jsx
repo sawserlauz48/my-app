@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../store/itmes";
+import { toast } from "react-toastify";
 
 const CartComponent = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const CartComponent = () => {
         dispatch(itemActions.addItemsLength(data.myCart.length));
       })
       .catch((err) => {
-        console.log(err.response, "err");
+        toast.error(err.response);
       });
   }, []);
 

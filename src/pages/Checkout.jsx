@@ -4,22 +4,15 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../store/itmes";
 import ButtonComponent from "../components/ButtonComponent";
-import {
-  buyIcon,
-  creditCard,
-  infoIcon,
-  plusIcon,
-  truckIcon,
-} from "../images/svgs";
+import { creditCard, infoIcon, truckIcon } from "../images/svgs";
 import ROUTES from "../routes/ROUTES";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [Items, setAllItems] = useState([]);
-  const [inputText, setInputText] = useState("");
+  const [display, setDisplay] = useState(null);
   const dispatch = useDispatch();
-  const [inputTextState, setInputTextState] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,31 +37,12 @@ const Checkout = () => {
         toast.error(err.response);
       });
   };
-  const HandleEditBtn = () => {};
-  const handleSaveBtn = async (
-    id,
-    price,
-    image,
-    title,
-    checkBoxState,
-    inputTextState
-  ) => {
-    setInputText(inputTextState);
-    const unChekedIngredients = Object.keys(checkBoxState)
-      .filter((key) => !checkBoxState[key])
-      .map((key) => `without ${key} `);
-    await axios.put("users/cartItem/" + id, {
-      ingredients: checkBoxState,
-      specialInstruction: unChekedIngredients + " " + inputTextState,
-      title,
-      image,
-      price,
-      _id: id,
-    });
+  const handleSaveBtn = async () => {
     await axios
       .get("users/cart/get-my-cart")
       .then(({ data }) => {
         setAllItems(data.myCart);
+        console.log("here");
       })
       .catch((err) => {
         toast.error(err.response);
@@ -82,14 +56,42 @@ const Checkout = () => {
   const handleTakeAwayBtn = () => {
     navigate(ROUTES.TAKEAWAY);
   };
-
+  const handleDisplay = (event) => {
+    setDisplay(event.target.innerHTML);
+  };
+  console.log(display, "display");
   const priceArr = Items.map((item) => item.price);
-  const total = priceArr.reduce((sum, num) => sum + +num, 0);
-
+  const total = priceArr.reduce((sum, price) => sum + +price, 0);
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
+      <div className="flex justify-center  relative top-10 h-12 border-4 border-slate-700 rounded-t-lg w-full bg-lightmode-bg">
+        <label
+          className="flex items-center justify-center w-full h-full border-r-2 border-black cursor-pointer"
+          htmlFor="cart"
+        >
+          cart
+          <input
+            id="cart"
+            type="radio"
+            name="checkout"
+            onClick={handleDisplay}
+          ></input>
+        </label>
+        <label
+          className="flex items-center justify-center w-full h-full border-r-2 border-black cursor-pointer"
+          htmlFor="history"
+        >
+          history
+          <input
+            id="history"
+            type="radio"
+            name="checkout"
+            onClick={handleDisplay}
+          ></input>
+        </label>
+      </div>
       <div
-        className=" p-[48px] container grid md:grid-cols-2 lg:grid-cols-3 bg-lightmode-accent border dark:border-slate-700
+        className="p-[48px] container grid md:grid-cols-2 lg:grid-cols-3 bg-lightmode-accent border dark:border-slate-700
       border-slate-50 dark:bg-darkmode-accent rounded-t-lg overflow-auto gap-5 "
       >
         {Items.length != 0 ? (
@@ -101,7 +103,6 @@ const Checkout = () => {
                 price={item.price}
                 instractions={item.specialInstruction}
                 onClickCloseBtn={handleDeleteBtn}
-                onClickEditBtn={HandleEditBtn}
                 ingredients={item.ingredients}
                 id={item._id}
                 onClickSaveBtn={handleSaveBtn}

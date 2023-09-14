@@ -37,7 +37,11 @@ And if there are no login errors you should see the message painted in yellow:
   POST /api/users
 ```
 
+to register the user
+
 #### Login a user
+
+will return a token
 
 ```http
   POST /api/users/login
@@ -67,10 +71,34 @@ You will need to provide an admin token or the registerd user's token to get an 
 
 You will need to provide the registerd user's token to get an answer from this api
 
-#### To change the user's business account of the registered user
+#### To add items to cart
 
 ```http
-  PATCH /api/users/:userId
+  PATCH /api/users/cart
+```
+
+You will need to provide the registerd user's token to get an answer from this api
+
+#### To add see all the items in the cart
+
+```http
+  PATCH /api/users/cart/get-my-cart
+```
+
+You will need to provide the registerd user's token to get an answer from this api
+
+#### To add items in the cart
+
+```http
+  PATCH /api/users/cartItem/:id
+```
+
+You will need to provide the registerd user's token to get an answer from this api
+
+#### To edit items in the cart
+
+```http
+  PUT /api/users/cartItem/:id
 ```
 
 You will need to provide the registerd user's token to get an answer from this api
@@ -83,9 +111,9 @@ You will need to provide the registerd user's token to get an answer from this a
 
 You will need to provide an admin token or the registerd user's token to get an answer from this api
 
-###### CARDS
+###### ITEMS
 
-#### To get all the business items
+#### To get all the items
 
 ```http
   GET /api/items
@@ -99,13 +127,13 @@ You will need to provide an admin token or the registerd user's token to get an 
 
 You will need the token of the registered user
 
-#### To get a spcefice business items
+#### To get a spcefice items
 
 ```http
-  GET /api/items/itemId
+  GET /api/items/:id
 ```
 
-#### To create a business item
+#### To create a item
 
 ```http
   POST /api/items/
@@ -113,26 +141,18 @@ You will need the token of the registered user
 
 You will need a business account token
 
-#### To update a business item
+#### To update an item
 
 ```http
-  PUT /api/items/itemId
+  PUT /api/items/:id
 ```
 
 You will need to provide a registerd user token to get an answer from this api
 
-#### To update a business item likes
+#### To delete an item
 
 ```http
-  PATCH /api/items/itemId
-```
-
-You will need to provide a registerd user token to get an answer from this api
-
-#### To delete a business item
-
-```http
-  DELETE /api/items/itemId
+  DELETE /api/items/:id
 ```
 
 You will need to provide a token of the registerd user or an admin to get an answer from this api

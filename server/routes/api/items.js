@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
     }
 })
-    .post("/", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
+    .post("/", authMw, permissionsMiddleware(true, true), async (req, res) => {
         try {
             await itemsValidationService.createItemValidation(req.body);
             let normalItem = await normalizeItem(req.body, req.userData._id);
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
         }
     });
 
-router.get("/my-items", authMw, async (req, res) => {
+router.get("/my-items", authMw, permissionsMiddleware(true, true), async (req, res) => {
     try {
         let allMyItems = await itemServiceModel.getMyItems(req.userData._id);
         if (allMyItems.length === 0) {
@@ -51,7 +51,7 @@ router.get("/my-items", authMw, async (req, res) => {
     }
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", permissionsMiddleware(true, true), async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
         const itemById = await itemServiceModel.getItemsById(req.params.id);
@@ -64,7 +64,7 @@ router.get("/:id", async (req, res) => {
 
 
     }
-}).put(("/:id"), authMw, permissionsMiddleware(false, true, false), async (req, res) => {
+}).put(("/:id"), authMw, permissionsMiddleware(true, true), async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
         let itemAfterValidation = await itemsValidationService.createItemValidation(req.body)
@@ -78,20 +78,20 @@ router.get("/:id", async (req, res) => {
 
     }
 
-}).patch("/:id", authMw, async (req, res) => {
+}).patch("/:id", authMw, permissionsMiddleware(true, true), async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
-        const itemToLike = await itemServiceModel.getItemsById(req.params.id);
-        itemToLike.likes.push(req.userData._id, req.body);
-        await itemServiceModel.likeItem(itemToLike);
+        const itemToAdd = await itemServiceModel.getItemsById(req.params.id);
+        itemToAdd.likes.push(req.userData._id, req.body);
+        await itemServiceModel.likeItem(itemToAdd);
         console.log(chalk.greenBright("The item has been add to the cart"));
-        return res.json({ msg: "The item has been added to the cart", itemToLike });
+        return res.json({ msg: "The item has been added to the cart", itemToAdd });
     } catch (err) {
         console.log(chalk.redBright("Could not add the item to the cart", err.message));
         return res.status(500).send(err.message);
     }
 })
-    .delete("/:id", authMw, permissionsMiddleware(true, true, true), async (req, res) => {
+    .delete("/:id", authMw, permissionsMiddleware(true, true), async (req, res) => {
         try {
             await itemsValidationService.createItemIdValidation(req.params.id);
             const deletItem = await itemServiceModel.deleteItem(req.params.id)

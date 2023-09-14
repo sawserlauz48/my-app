@@ -3,7 +3,8 @@ const itemService = require("../model/itemsService/itemsService");
 const itemsValidationService = require("../validation/itemsValidationService");
 const chalk = require("chalk");
 
-const permissionsMiddleware = (isEmployed, isAdmin, isUser) => {
+
+const permissionsMiddleware = (isEmployed, isUser) => {
     return (req, res, next) => {
         if (!req.userData) {
             console.log(chalk.redBright("userData was not provided"));
@@ -12,9 +13,7 @@ const permissionsMiddleware = (isEmployed, isAdmin, isUser) => {
         if (isEmployed === req.userData.isEmployed && isEmployed === true) {
             return next()
         }
-        if (isAdmin === req.userData.isAdmin && isAdmin === true) {
-            return next()
-        }
+
         if (isUser === req.userData.isUser && isUser === true) {
             return next()
         }

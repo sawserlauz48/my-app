@@ -30,7 +30,6 @@ const LoginPage = () => {
       loggedIn();
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.log(err);
       toast.error("e-mail or password incorrect");
     }
   };

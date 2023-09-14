@@ -58,7 +58,11 @@ const ListComponent = ({
         <tbody>
           <tr className="w-full border dark:border-r-[0.1px] dark:border-slate-700 border-r-[0.1px] border-slate-50">
             <td className="tdImage p-4 ">
-              <img className="rounded-md" src={image} alt={name} />
+              <img
+                className="rounded-md"
+                src={image.data || image}
+                alt={name}
+              />
             </td>
             <td className="tdTitle font-bold text-lg px-6 py-4 text-gray-900 dark:text-white">
               {name}
@@ -67,7 +71,7 @@ const ListComponent = ({
               {description}
             </td>
             <td className={` px-6 py-4 text-slate-900 dark:text-slate-300`}>
-              {price}
+              {price} ₪
             </td>
             <td className="px-6 py-4 text-slate-900 dark:text-slate-300">
               <div onClick={handleDivClick}>

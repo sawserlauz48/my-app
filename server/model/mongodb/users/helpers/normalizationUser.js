@@ -6,7 +6,7 @@ const normalizeUser = (userData) => {
         userData.image = {}
     }
     userData.image = {
-        url: userData.image.url || "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg",
+        data: userData.image.data || "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg",
         alt: userData.image.alt || "user defult picture",
     }
     return {

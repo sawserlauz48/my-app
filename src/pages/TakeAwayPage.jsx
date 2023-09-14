@@ -44,11 +44,12 @@ const TakeAway = () => {
       await axios.patch(`/users/cart/`, {
         item: id,
         title,
-        image: image,
+        image: image.data,
         ingredients: ingredients,
         specialInstruction: "",
         price: price,
       });
+      console.log(image, "image from TA page");
       await axios
         .get("users/cart/get-my-cart")
         .then(({ data }) => {
@@ -60,7 +61,6 @@ const TakeAway = () => {
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");
-      toast.error(err.response);
     }
   };
   const handleAddItemClick = () => {
@@ -80,7 +80,7 @@ const TakeAway = () => {
       toast.error("Could'nt delete the item");
     }
   };
-
+  console.log(Items, "items");
   return (
     <div className="relative">
       <div>
@@ -122,9 +122,9 @@ const TakeAway = () => {
               key={item.title}
               id={item._id}
               name={item.title}
-              price={item.price + " " + "₪"}
+              price={item.price}
               description={item.description}
-              image={item.image.url}
+              image={item.image}
               ing={item.ingredients}
               icon={buyIcon}
               onEditClick={handleEditBtn}
@@ -161,9 +161,9 @@ const TakeAway = () => {
               key={item.title}
               id={item._id}
               name={item.title}
-              price={item.price + " " + "₪"}
+              price={item.price}
               description={item.description}
-              image={item.image.url}
+              image={item.image}
               ing={item.ingredients}
               icon={buyIcon}
               onEditClick={handleEditBtn}
