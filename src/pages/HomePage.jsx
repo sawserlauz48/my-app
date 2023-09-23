@@ -44,21 +44,21 @@ const HomePage = () => {
         </div>
       </div>
       <div className="grid justify-items-center md:grid-cols-3 gap-7 my-5 px-5">
-        <div className="flex flex-col  gap-2">
+        <div className="flex flex-col  gap-2 w-3/4 bg-lightmode-accent dark:bg-darkmode-accent border rounded-xl border-slate-50 dark:border-slate-700 p-[48px] ">
           <div className="self-center font-bold text-xl">address</div>
           <div className="self-center">da,Kfar kama,Israel</div>
           <div className="self-center">
             <a>link</a>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-3/4 bg-lightmode-accent dark:bg-darkmode-accent border rounded-xl border-slate-50 dark:border-slate-700 p-[48px]">
           <div className="self-center font-bold text-xl">hours</div>
-          <div>Monday - Friday</div>
+          <div className="self-center">Monday - Friday</div>
           <div className="self-center">19:00-22:00</div>
           <div className="self-center"> Saturday</div>
           <div className="self-center">13:00-22:00</div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-3/4 bg-lightmode-accent dark:bg-darkmode-accent border rounded-xl border-slate-50 dark:border-slate-700 p-[48px]">
           <div className="self-center font-bold text-xl">contact</div>
           <div className="self-center">054-4698522</div>
           <div className="self-center">Anatolia@gmail.com</div>

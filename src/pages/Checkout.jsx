@@ -62,36 +62,11 @@ const Checkout = () => {
   console.log(display, "display");
   const priceArr = Items.map((item) => item.price);
   const total = priceArr.reduce((sum, price) => sum + +price, 0);
+
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-center  relative top-10 h-12 border-4 border-slate-700 rounded-t-lg w-full bg-lightmode-bg">
-        <label
-          className="flex items-center justify-center w-full h-full border-r-2 border-black cursor-pointer"
-          htmlFor="cart"
-        >
-          cart
-          <input
-            id="cart"
-            type="radio"
-            name="checkout"
-            onClick={handleDisplay}
-          ></input>
-        </label>
-        <label
-          className="flex items-center justify-center w-full h-full border-r-2 border-black cursor-pointer"
-          htmlFor="history"
-        >
-          history
-          <input
-            id="history"
-            type="radio"
-            name="checkout"
-            onClick={handleDisplay}
-          ></input>
-        </label>
-      </div>
+    <div className="flex flex-col w-full">
       <div
-        className="p-[48px] container grid md:grid-cols-2 lg:grid-cols-3 bg-lightmode-accent border dark:border-slate-700
+        className="sm:p-[48px] bg-lightmode-accent border dark:border-slate-700
       border-slate-50 dark:bg-darkmode-accent rounded-t-lg overflow-auto gap-5 "
       >
         {Items.length != 0 ? (

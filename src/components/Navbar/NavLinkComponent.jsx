@@ -13,9 +13,9 @@ const NavLinkComponent = ({ url, label, icon, onclick, ...rest }) => {
             : "flex sm:flex-row dark:text-white flex-col "
         }
       >
-        <div className="hover:text-lightmode-pBtn flex">
+        <div className="hover:text-lightmode-pBtn flex flex-col sm:flex-row">
           <div className="nav-icon ">{icon}</div>
-          <span className="link-text ">{label}</span>
+          <span className="link-text sm:text-lightmode-pBtn ">{label}</span>
         </div>
       </NavLink>
     </div>

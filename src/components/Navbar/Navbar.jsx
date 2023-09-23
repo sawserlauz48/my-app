@@ -68,11 +68,13 @@ const Navbar = () => {
           PROFILE
         </li>
         <li className="nav-item ">
-          <NavLinkComponent
-            url={ROUTES.PROFILE}
-            icon={profileIcon}
-            label={"Profie page"}
-          ></NavLinkComponent>
+          <div className="">
+            <NavLinkComponent
+              url={ROUTES.PROFILE}
+              icon={profileIcon}
+              label={"Profie page"}
+            ></NavLinkComponent>
+          </div>
         </li>
         <li className="nav-item  ">
           <a href="#" className="nav-link flex flex-row" onClick={changeTheme}>
