@@ -76,7 +76,7 @@ const ItemInfo = () => {
       toast.success("item has been added to the cart");
     } catch (error) {
       toast.error("couldn't add the item to the cart");
-      toast.error(err.response);
+      toast.error(error.response);
     }
     navigate("/takeaway");
   };

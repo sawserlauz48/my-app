@@ -191,7 +191,6 @@ const AddItem = () => {
               <AlertComponent
                 inputsErrorsState={inputsErrorsState}
                 name={"ingredients"}
-                onChange={(e) => handleInputIngredients(index, e.target.value)}
                 className={"rounded-lg "}
               />
               <ButtonComponent
