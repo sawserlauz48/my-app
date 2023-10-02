@@ -57,8 +57,8 @@ const AddItem = () => {
         let newState = {
           ...data,
         };
-        if (data.image && data.image.url) {
-          newState.imageUrl = data.image.url;
+        if (data.image && data.image.data) {
+          newState.imageUrl = data.image.data;
         } else {
           newState.imageUrl = "";
         }

@@ -80,7 +80,6 @@ const TakeAway = () => {
       toast.error("Could'nt delete the item");
     }
   };
-  console.log(Items, "items");
   return (
     <div className="relative">
       <div>
