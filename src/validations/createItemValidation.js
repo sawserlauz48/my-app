@@ -10,7 +10,7 @@ const creatItemSchema = Joi.object({
     imageAlt: Joi.string().min(2).max(100).label("Image Alt").allow(""),
     dietary: Joi.string().min(2).max(500).label("Dietary").required(""),
     course: Joi.string().min(2).max(500).label("Course").required(""),
-    ingredients: Joi.array().items(Joi.string().allow("")).label("Ingredients").allow("")
+    ingredients: Joi.array().items(Joi.string().min(2).max(20).allow("")).label("Ingredients").allow("")
         .messages({
             "any.required": "Ingredients can't be empty",
             "number.base": "Ingredients can't be empty"

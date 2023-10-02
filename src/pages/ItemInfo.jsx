@@ -35,7 +35,6 @@ const ItemInfo = () => {
         let newState = {
           ...data,
         };
-        console.log(newState, "newState");
         delete newState.__v;
         delete newState.user_id;
         delete newState.createdAt;
@@ -91,7 +90,6 @@ const ItemInfo = () => {
     newCheckBoxState[event.target.id] = event.target.checked;
     setCheckBoxState(newCheckBoxState);
   };
-  console.log(state.image, "state.image.data");
 
   return (
     <div onClick={closeItemInfo} className="outerDiV">
@@ -103,7 +101,7 @@ const ItemInfo = () => {
         <div className="flex flex-col items-center sm:items-start space-x-7 space-y-4 sm:flex-row ">
           <div>
             <img
-              src={`data:image/png;base64,${state.image.data}`}
+              src={`${state.image.data}`}
               alt={state.image.alt}
               className="w-[280px]"
             />
