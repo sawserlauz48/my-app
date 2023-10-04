@@ -54,11 +54,9 @@ const Checkout = () => {
     setAllItems([]);
   };
   const handleTakeAwayBtn = () => {
-    navigate(ROUTES.TAKEAWAY);
+    navigate(ROUTES.ORDERS);
   };
-  const handleDisplay = (event) => {
-    setDisplay(event.target.innerHTML);
-  };
+
   console.log(display, "display");
   const priceArr = Items.map((item) => item.price);
   const total = priceArr.reduce((sum, price) => sum + +price, 0);

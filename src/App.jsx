@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import Router from "./routes/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import QuantityComponent from "./components/QuantityComponent";
 import CartComponent from "./components/CartComponent";
 import useLoggedIn from "./hooks/useLoggedIn";
 

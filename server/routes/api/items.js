@@ -51,7 +51,7 @@ router.get("/my-items", authMw, permissionsMiddleware(true, true), async (req, r
     }
 })
 
-router.get("/:id", permissionsMiddleware(true, true), async (req, res) => {
+router.get("/:id", authMw, permissionsMiddleware(true, true), async (req, res) => {
     try {
         await itemsValidationService.createItemIdValidation(req.params.id);
         const itemById = await itemServiceModel.getItemsById(req.params.id);

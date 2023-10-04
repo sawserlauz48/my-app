@@ -57,8 +57,9 @@ const AddItem = () => {
         let newState = {
           ...data,
         };
-        if (data.image && data.image.url) {
-          newState.imageUrl = data.image.url;
+        console.log(data, "data");
+        if (data.image && data.image.data) {
+          newState.imageUrl = data.image.data;
         } else {
           newState.imageUrl = "";
         }
@@ -113,8 +114,10 @@ const AddItem = () => {
     newInputState["ingredients"] = inputIngredients;
     setState(newInputState);
   };
+  console.log(inputsErrorsState, "inputEROOR");
   const handleSaveBtn = async () => {
     try {
+      console.log(state, "inputState");
       const joiResponse = validateCreatItemSchema(state);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
@@ -130,7 +133,7 @@ const AddItem = () => {
         course: state.course,
         ingredients: state.ingredients,
         image: {
-          url: state.imageUrl,
+          data: state.imageUrl,
           alt: state.imageAlt,
         },
       });
@@ -186,7 +189,6 @@ const AddItem = () => {
             <AlertComponent
               inputsErrorsState={inputsErrorsState}
               name={"ingredients"}
-              onChange={(e) => handleInputIngredients(index, e.target.value)}
               className={"rounded-lg "}
             />
             <ButtonComponent

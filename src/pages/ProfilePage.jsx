@@ -106,7 +106,6 @@ const ProfilePage = () => {
     newInputState[event.target.id] = event.target.value;
     setInputState(newInputState);
   };
-  console.log(inputState, "inputState");
   const handleSaveInBtn = async () => {
     try {
       const joiResponse = validateProfileSchema(inputState);

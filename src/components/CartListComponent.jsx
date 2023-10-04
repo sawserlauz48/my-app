@@ -47,9 +47,7 @@ const CartListComponent = ({
     setInputTextState(newInputState);
   };
 
-  console.log(inputTextState, "inputTextState1");
   const handleSaveBtn = async () => {
-    console.log(inputTextState, "inputTextState2");
     const unChekedIngredients = Object.keys(checkBoxState)
       .filter((key) => !checkBoxState[key])
       .map((key) => `without ${key} `);
@@ -63,20 +61,16 @@ const CartListComponent = ({
     });
     await axios
       .get("users/cart/get-my-cart")
-      .then(({ data }) => {
-        console.log(data);
-      })
+      .then(({ data }) => {})
       .catch((err) => {
         toast.error(err.response);
       });
     setState(!isstate);
     onClickSaveBtn();
-    console.log(inputTextState, "inputTextState3");
   };
   const handleCancleBtn = () => {
     setState(!isstate);
   };
-  console.log(isstate);
   return (
     <div className="w-full relative p-2 mt-10 ">
       <button

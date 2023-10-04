@@ -10,6 +10,7 @@ const ROUTES = {
     CARDINFO: "/cardinfo",
     ADDITEM: "/additem",
     EDITITEM: "/edititem",
+    ORDERS: "/orders",
 };
 
 export default ROUTES;

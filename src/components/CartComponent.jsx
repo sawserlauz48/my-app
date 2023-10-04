@@ -30,7 +30,7 @@ const CartComponent = () => {
     <div className="fixed">
       <button
         onClick={handleClick}
-        className=" text-white bg-lightmode-pBtn w-[60px] h-[60px] flex justify-center items-center rounded-[50%] fixed bottom-5 right-5 hover:bg-orange-300"
+        className=" text-white bg-lightmode-pBtn w-[60px] h-[60px] flex justify-center items-center rounded-[50%] fixed bottom-24 right-5 sm:bottom-5 sm:right-5 hover:bg-orange-300"
       >
         <div className="bg-lightmode-bg rounded-[50%]  w-[24px] h-[24px] text-[0.6rem] text-black border-[3px] border-orange-300 flex justify-center items-center absolute top-[-5px] right-[-5px]">
           {itemsInCart}

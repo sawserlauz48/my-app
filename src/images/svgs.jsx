@@ -359,6 +359,57 @@ const creditCard = (
     />
   </svg>
 );
+const hourGlass = (
+  <svg
+    className="w-6 h-6"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 14 20"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M4 6h6m-6 4h6m-6 4h6M1 1v18l2-2 2 2 2-2 2 2 2-2 2 2V1l-2 2-2-2-2 2-2-2-2 2-2-2Z"
+    />
+  </svg>
+);
+const clockIcon = (
+  <svg
+    className="w-6 h-6"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+    />
+  </svg>
+);
+const arrowAcc = (
+  <svg
+    data-accordion-icon
+    class="w-3 h-3 rotate-180 shrink-0"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 10 6"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9 5 5 1 1 5"
+    />
+  </svg>
+);
 
 export {
   moonIcon,
@@ -384,4 +435,7 @@ export {
   gridIcon,
   plusIcon,
   creditCard,
+  hourGlass,
+  clockIcon,
+  arrowAcc,
 };

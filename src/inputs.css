@@ -23,6 +23,24 @@
   height: 18px;
   transition: 0.3s ease-in;
 }
+[type="checkbox"] + label::before,
+[type="radio"] + label::before {
+  @apply outline outline-2 outline-slate-600 bg-lightmode-bg dark:bg-darkmode-bg rounded-md;
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  transition: 0.3s ease-in;
+}
+.add + label::after,
+.add + label::before {
+  display: none;
+}
+.add:checked + label {
+  @apply text-lightmode-pBtn;
+}
 [type="checkbox"]:checked + label::before,
 [type="radio"]:checked + label::before {
   @apply outline outline-2 outline-darkmode-pBtn bg-lightmode-bg dark:bg-darkmode-bg;

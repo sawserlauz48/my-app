@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import ROUTES from "./ROUTES";
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
-import OrderTable from "../pages/OrderTable";
 import TakeAway from "../pages/TakeAwayPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/registerPage/RegisterPage";
@@ -11,6 +10,7 @@ import ItemInfo from "../pages/ItemInfo";
 import Checkout from "../pages/Checkout";
 import AddItem from "../pages/AddItem";
 import EditItemPage from "../pages/EditItemPage";
+import Orders from "../pages/Orders";
 
 const Router = () => {
   return (
@@ -37,6 +37,7 @@ const Router = () => {
       <Route path={ROUTES.PROFILE} element={<ProfilePage />}></Route>
       <Route path={ROUTES.CHECKOUT} element={<Checkout />}></Route>
       <Route path={ROUTES.ADDITEM} element={<AddItem />}></Route>
+      <Route path={ROUTES.ORDERS} element={<Orders />}></Route>
     </Routes>
   );
 };
