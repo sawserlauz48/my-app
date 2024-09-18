@@ -1,0 +1,14 @@
+@media (max-width: 640px) {
+  .registerNamesInput {
+    @apply grid-cols-1 gap-0;
+  }
+  .tdDescription {
+    display: none;
+  }
+  .tdTitle {
+    padding-left: 0;
+  }
+  .listGrid {
+    padding: 50px 10px 10px;
+  }
+}
